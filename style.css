@@ -16,12 +16,23 @@
 }
 
 :root {
-  /* پالت رنگ‌های پایه */
+  /* پالت رنگ‌های پایه (حالت تاریک پیش‌فرض) */
   --bg-primary: #070913;
   --bg-secondary: #0d1122;
   --bg-card: rgba(18, 23, 41, 0.75);
   --bg-card-hover: rgba(28, 35, 62, 0.85);
   --bg-card-active: rgba(36, 24, 70, 0.85);
+  --bg-card-solid: #121729;
+  --bg-surface-elevated: #151b33;
+  --bg-input: rgba(18, 23, 41, 0.85);
+  --bg-input-focus: rgba(22, 28, 50, 0.95);
+  --bg-header: rgba(7, 9, 19, 0.85);
+  --bg-modal-overlay: rgba(0, 0, 0, 0.75);
+  --bg-steps-wrapper: rgba(13, 17, 34, 0.6);
+
+  /* پس‌زمینه کلی صفحه */
+  --body-bg-gradient: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(109, 40, 217, 0.22), transparent 70%),
+                      radial-gradient(circle at 10% 80%, rgba(76, 29, 149, 0.12), transparent 50%);
 
   /* گرادیان‌ها */
   --grad-primary: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 50%, #7c3aed 100%);
@@ -45,6 +56,35 @@
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-card: rgba(168, 85, 247, 0.18);
   --border-focus: rgba(192, 132, 252, 0.8);
+  --border-input: rgba(255, 255, 255, 0.12);
+
+  /* گرادیان‌های خوشنویسی برند «صحیحی» */
+  --logo-header-gradient: linear-gradient(135deg, #ffffff 40%, #c084fc 100%);
+  --logo-hero-gradient: linear-gradient(135deg, #ffffff 0%, #f3e8ff 45%, #c084fc 100%);
+  --logo-hero-shadow: drop-shadow(0 4px 22px rgba(168, 85, 247, 0.5));
+  --logo-chat-gradient: linear-gradient(135deg, #ffffff 30%, #c084fc 100%);
+
+  /* حباب‌های چت */
+  --chat-bg-wrapper: rgba(18, 23, 41, 0.8);
+  --chat-bg-header: rgba(10, 14, 28, 0.8);
+  --chat-user-bubble-bg: linear-gradient(135deg, rgba(109, 40, 217, 0.32), rgba(76, 29, 149, 0.32));
+  --chat-user-bubble-border: rgba(168, 85, 247, 0.32);
+  --chat-user-bubble-text: #ffffff;
+  --chat-assistant-bubble-bg: rgba(15, 20, 36, 0.9);
+  --chat-assistant-bubble-border: rgba(255, 255, 255, 0.08);
+  --chat-assistant-bubble-text: #f8fafc;
+  --chat-meta-bar-bg: rgba(10, 14, 28, 0.55);
+  --chat-quick-bg: rgba(10, 14, 28, 0.5);
+  --chat-input-bar-bg: rgba(10, 14, 28, 0.9);
+  --chat-input-bg: rgba(18, 23, 41, 0.95);
+  --chat-input-border: rgba(255, 255, 255, 0.12);
+  --chip-bg: rgba(255, 255, 255, 0.04);
+  --chip-hover-bg: rgba(109, 40, 217, 0.2);
+
+  /* اسکرول‌بار */
+  --scrollbar-track: rgba(10, 14, 28, 0.7);
+  --scrollbar-thumb: rgba(139, 92, 246, 0.3);
+  --scrollbar-thumb-hover: rgba(168, 85, 247, 0.5);
 
   /* وضعیت‌ها */
   --color-success: #10b981;
@@ -77,6 +117,96 @@
   --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ==========================================================================
+   پالت حالت روشن (Light Mode Palette)
+   طراحی اختصاصی، حرفه‌ای و هماهنگ با هویت بصری «صحیحی»
+   ========================================================================== */
+[data-theme="light"] {
+  /* پالت رنگ‌های پایه */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.94);
+  --bg-card-hover: rgba(255, 255, 255, 1);
+  --bg-card-active: #f5f3ff;
+  --bg-card-solid: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-input: #ffffff;
+  --bg-input-focus: #ffffff;
+  --bg-header: rgba(255, 255, 255, 0.9);
+  --bg-modal-overlay: rgba(15, 23, 42, 0.5);
+  --bg-steps-wrapper: rgba(241, 245, 249, 0.9);
+
+  /* پس‌زمینه کلی صفحه در حالت روشن */
+  --body-bg-gradient: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(139, 92, 246, 0.12), transparent 70%),
+                      radial-gradient(circle at 10% 80%, rgba(109, 40, 217, 0.06), transparent 50%);
+
+  /* گرادیان‌ها */
+  --grad-primary: linear-gradient(135deg, #6d28d9 0%, #7c3aed 50%, #8b5cf6 100%);
+  --grad-hero: radial-gradient(circle at 50% 10%, rgba(109, 40, 217, 0.12) 0%, rgba(248, 250, 252, 0) 70%);
+  --grad-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+
+  /* رنگ‌های بنفش برند (با کنتراست مناسب پس‌زمینه روشن) */
+  --color-purple-deep: #4c1d95;
+  --color-purple-main: #6d28d9;
+  --color-purple-bright: #7c3aed;
+  --color-purple-light: #6d28d9;
+  --color-purple-glow: rgba(109, 40, 217, 0.2);
+
+  /* رنگ‌های متن (تیره با کنتراست بالا و خوانایی عالی) */
+  --text-main: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+
+  /* حاشیه‌ها و خطوط */
+  --border-subtle: #e2e8f0;
+  --border-card: #cbd5e1;
+  --border-focus: #7c3aed;
+  --border-input: #cbd5e1;
+
+  /* گرادیان‌های خوشنویسی برند «صحیحی» در حالت روشن (بنفش عمیق و اصیل) */
+  --logo-header-gradient: linear-gradient(135deg, #4c1d95 0%, #6d28d9 60%, #7c3aed 100%);
+  --logo-hero-gradient: linear-gradient(135deg, #3b0764 0%, #581c87 40%, #6d28d9 80%, #7c3aed 100%);
+  --logo-hero-shadow: drop-shadow(0 4px 18px rgba(109, 40, 217, 0.35));
+  --logo-chat-gradient: linear-gradient(135deg, #4c1d95 0%, #6d28d9 70%, #7c3aed 100%);
+
+  /* حباب‌های چت */
+  --chat-bg-wrapper: #ffffff;
+  --chat-bg-header: #f8fafc;
+  --chat-user-bubble-bg: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);
+  --chat-user-bubble-border: #6d28d9;
+  --chat-user-bubble-text: #ffffff;
+  --chat-assistant-bubble-bg: #f8fafc;
+  --chat-assistant-bubble-border: #e2e8f0;
+  --chat-assistant-bubble-text: #0f172a;
+  --chat-meta-bar-bg: #f1f5f9;
+  --chat-quick-bg: #f8fafc;
+  --chat-input-bar-bg: #ffffff;
+  --chat-input-bg: #ffffff;
+  --chat-input-border: #cbd5e1;
+  --chip-bg: #f1f5f9;
+  --chip-hover-bg: #ede9fe;
+
+  /* اسکرول‌بار */
+  --scrollbar-track: #f1f5f9;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+
+  /* وضعیت‌ها */
+  --color-success: #059669;
+  --color-success-bg: rgba(5, 150, 105, 0.1);
+  --color-error: #e11d48;
+  --color-error-bg: rgba(225, 29, 72, 0.1);
+  --color-warning: #d97706;
+  --color-warning-bg: rgba(217, 119, 6, 0.1);
+
+  /* سایه‌ها در حالت روشن (ملایم و طبیعی) */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 20px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 25px -5px rgba(109, 40, 217, 0.18);
+  --shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
 /* 2. ریست پایه و تنظیمات عمومی */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -100,13 +230,12 @@ html {
 body {
   min-height: 100vh;
   background-color: var(--bg-primary);
-  background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(109, 40, 217, 0.22), transparent 70%),
-    radial-gradient(circle at 10% 80%, rgba(76, 29, 149, 0.12), transparent 50%);
+  background-image: var(--body-bg-gradient);
   background-attachment: fixed;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  transition: background-color var(--transition-smooth), color var(--transition-smooth);
 }
 
 /* اعداد فارسی در صورت نیاز */
@@ -120,14 +249,14 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(10, 14, 28, 0.7);
+  background: var(--scrollbar-track);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.3);
+  background: var(--scrollbar-thumb);
   border-radius: var(--radius-full);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(168, 85, 247, 0.5);
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* 3. سربرگ اصلی برنامه (Sticky Header) */
@@ -135,7 +264,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(7, 9, 19, 0.85);
+  background: var(--bg-header);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
@@ -143,19 +272,37 @@ body {
 }
 
 .header-container {
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 12px 24px;
+  padding: 14px 24px;
+  min-height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
 }
 
-.header-brand {
+/* سمت راست نوار بالایی: نماد تصویری و نشانگر کاربر */
+.header-brand-start {
   display: flex;
   align-items: center;
   gap: 12px;
+  z-index: 5;
+}
+
+/* عنوان متنی «صحیحی» در مرکز واقعی، دقیق و مستقل نوار بالا */
+.header-brand-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .brand-emblem {
@@ -175,6 +322,10 @@ body {
 .brand-text {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .brand-nastaliq {
@@ -197,13 +348,18 @@ body {
 
 .brand-name.brand-nastaliq {
   font-size: 1.75rem;
-  background: linear-gradient(135deg, #ffffff 40%, #c084fc 100%);
+  line-height: 1.7;
+  background: var(--logo-header-gradient);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  padding: 4px 6px 2px;
+  color: transparent;
+  padding: 20px 12px 8px 12px;
+  margin-top: -12px;
+  margin-bottom: 2px;
   overflow: visible;
   display: inline-block;
-  transform: translateY(3px);
+  transform: translateY(5px);
 }
 
 /* نشانگر تایپ تدریجی پاسخ استریم */
@@ -264,6 +420,8 @@ body {
   border-radius: var(--radius-full);
   font-size: 0.85rem;
   animation: fadeInDown 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  z-index: 5;
+  position: relative;
 }
 
 .user-badge-icon {
@@ -279,35 +437,93 @@ body {
 .user-badge-name {
   color: var(--text-main);
   font-weight: 600;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-inline-start: auto;
+  z-index: 5;
+  position: relative;
 }
 
 .header-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: transparent;
+  background: var(--chip-bg);
   color: var(--text-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 6px 14px;
+  padding: 7px 14px;
   font-size: 0.82rem;
   font-family: inherit;
+  font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-fast);
+  user-select: none;
 }
 
 .header-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--chip-hover-bg);
   color: var(--text-main);
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-purple-bright);
+}
+
+.header-btn:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* دکمه اختصاصی تغییر حالت روز/شب (Theme Toggle Button) */
+.theme-toggle-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle-btn .theme-icon {
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+/* کنترل نمایش آیکون‌ها بر اساس تم فعال */
+/* در حالت پیش‌فرض (تاریک): آیکون خورشید نمایش داده می‌شود و آیکون ماه مخفی است */
+.theme-toggle-btn .icon-moon {
+  display: none;
+}
+
+.theme-toggle-btn .icon-sun {
+  display: block;
+  color: #fbbf24; /* طلایی ملایم برای نماد خورشید */
+}
+
+/* در حالت روشن: آیکون ماه نمایش داده می‌شود و آیکون خورشید مخفی است */
+[data-theme="light"] .theme-toggle-btn .icon-sun {
+  display: none;
+}
+
+[data-theme="light"] .theme-toggle-btn .icon-moon {
+  display: block;
+  color: var(--color-purple-main); /* بنفش برند برای ماه */
+}
+
+.theme-toggle-label {
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 
 /* نوار پیشرفت مراحل (Steps Progress) */
 .steps-progress-wrapper {
-  background: rgba(13, 17, 34, 0.6);
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  background: var(--bg-steps-wrapper);
+  border-top: 1px solid var(--border-subtle);
   padding: 10px 16px;
   overflow-x: auto;
+  transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
 }
 
 .steps-progress-bar {
@@ -568,17 +784,20 @@ body {
 
 .hero-brand-calligraphy {
   font-size: 4.8rem;
-  line-height: 1.55;
-  color: #ffffff;
-  background: linear-gradient(135deg, #ffffff 0%, #f3e8ff 45%, #c084fc 100%);
+  line-height: 1.68;
+  color: var(--color-purple-deep);
+  background: var(--logo-hero-gradient);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 22px rgba(168, 85, 247, 0.5));
-  padding: 12px 28px;
-  margin: 0;
+  filter: var(--logo-hero-shadow);
+  padding: 44px 36px 18px 36px;
+  margin-top: -24px;
+  margin-bottom: 2px;
   letter-spacing: 0 !important;
   overflow: visible;
   display: inline-block;
+  transform: translateY(6px);
   transition: transform var(--transition-smooth);
 }
 
@@ -587,7 +806,7 @@ body {
   color: var(--color-purple-light);
   font-weight: 600;
   letter-spacing: 0.02em;
-  margin-top: -6px;
+  margin-top: 0;
 }
 
 .hero-badge {
@@ -608,8 +827,9 @@ body {
   color: var(--text-main);
   line-height: 1.35;
   margin-bottom: 16px;
-  background: linear-gradient(135deg, #ffffff 40%, #c084fc 100%);
+  background: var(--logo-header-gradient);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -622,12 +842,13 @@ body {
 }
 
 .welcome-form-card {
-  background: rgba(10, 14, 28, 0.6);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: 28px;
   margin-bottom: 32px;
   text-align: right;
+  box-shadow: var(--shadow-sm);
 }
 
 .form-label {
@@ -654,8 +875,8 @@ body {
   font-family: inherit;
   font-size: 1.05rem;
   color: var(--text-main);
-  background: rgba(18, 23, 41, 0.85);
-  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  background: var(--bg-input);
+  border: 1.5px solid var(--border-input);
   border-radius: var(--radius-md);
   padding: 14px 18px;
   transition: all var(--transition-fast);
@@ -663,9 +884,9 @@ body {
 
 .text-input:focus {
   outline: none;
-  border-color: var(--color-purple-bright);
-  background: rgba(22, 28, 50, 0.95);
-  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.18);
+  border-color: var(--border-focus);
+  background: var(--bg-input-focus);
+  box-shadow: 0 0 0 4px var(--color-purple-glow);
 }
 
 .text-input::placeholder {
@@ -832,7 +1053,7 @@ body {
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 24px;
-  background: rgba(13, 17, 34, 0.6);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: 8px 16px;
@@ -1022,8 +1243,8 @@ body {
 
 .option-chip {
   position: relative;
-  background: rgba(13, 17, 34, 0.7);
-  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 12px 16px;
   cursor: pointer;
@@ -1038,7 +1259,7 @@ body {
 }
 
 .option-chip:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-card-hover);
   border-color: rgba(168, 85, 247, 0.3);
   color: var(--text-main);
 }
@@ -1050,7 +1271,7 @@ body {
 .option-chip.selected {
   background: rgba(109, 40, 217, 0.22);
   border-color: var(--color-purple-bright);
-  color: #ffffff;
+  color: var(--text-main);
   font-weight: 600;
   box-shadow: 0 0 14px rgba(168, 85, 247, 0.2);
 }
@@ -1059,7 +1280,7 @@ body {
   width: 16px;
   height: 16px;
   border-radius: var(--radius-full);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border: 1.5px solid var(--border-subtle);
   flex-shrink: 0;
   transition: all var(--transition-fast);
 }
@@ -1075,8 +1296,8 @@ body {
   font-family: inherit;
   font-size: 0.95rem;
   color: var(--text-main);
-  background: rgba(13, 17, 34, 0.75);
-  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-input);
+  border: 1.5px solid var(--border-input);
   border-radius: var(--radius-md);
   padding: 14px 18px;
   min-height: 110px;
@@ -1087,8 +1308,8 @@ body {
 
 .form-textarea:focus {
   outline: none;
-  border-color: var(--color-purple-bright);
-  background: rgba(16, 21, 42, 0.9);
+  border-color: var(--border-focus);
+  background: var(--bg-input-focus);
   box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15);
 }
 
@@ -1112,7 +1333,7 @@ body {
   border: 1px solid rgba(244, 63, 94, 0.3);
   border-radius: var(--radius-md);
   padding: 12px 18px;
-  color: #ffccd5;
+  color: var(--color-error);
   font-size: 0.9rem;
   margin-top: 20px;
 }
@@ -1140,7 +1361,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  background: rgba(13, 17, 34, 0.7);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: 20px 24px;
@@ -1193,7 +1414,7 @@ body {
 }
 
 .summary-answer-card {
-  background: rgba(13, 17, 34, 0.5);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 14px 18px;
@@ -1214,7 +1435,7 @@ body {
 }
 
 .summary-desc-box {
-  background: rgba(13, 17, 34, 0.5);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 18px 20px;
@@ -1236,7 +1457,7 @@ body {
 }
 
 .legal-disclaimer-box {
-  background: rgba(245, 158, 11, 0.08);
+  background: var(--color-warning-bg);
   border: 1px solid rgba(245, 158, 11, 0.28);
   border-radius: var(--radius-lg);
   padding: 20px 24px;
@@ -1257,7 +1478,7 @@ body {
   gap: 6px;
   font-size: 0.88rem;
   line-height: 1.7;
-  color: #fef3c7;
+  color: var(--text-main);
 }
 
 /* 11. استایل‌های مرحله ششم (محیط گفت‌وگوی چت) */
@@ -1283,7 +1504,7 @@ body {
 
 .chat-header-bar {
   padding: 16px 24px;
-  background: rgba(10, 14, 28, 0.8);
+  background: var(--chat-bg-header);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -1329,12 +1550,14 @@ body {
 
 .chat-brand-title.brand-nastaliq {
   font-size: 1.65rem;
-  line-height: 1.35;
-  color: #ffffff;
-  background: linear-gradient(135deg, #ffffff 30%, #c084fc 100%);
+  line-height: 1.6;
+  color: var(--color-purple-deep);
+  background: var(--logo-chat-gradient);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  padding: 3px 6px 1px;
+  padding: 14px 8px 6px 8px;
+  margin-top: -8px;
   letter-spacing: 0 !important;
   overflow: visible;
   display: inline-block;
@@ -1382,7 +1605,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--chip-bg);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 7px 12px;
@@ -1394,9 +1617,9 @@ body {
 }
 
 .btn-chat-tool:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--chip-hover-bg);
   color: var(--text-main);
-  border-color: rgba(255, 255, 255, 0.18);
+  border-color: var(--color-purple-bright);
 }
 
 .chat-scroll-area {
@@ -1480,16 +1703,16 @@ body {
 }
 
 .chat-message-row.user .message-bubble {
-  background: linear-gradient(135deg, rgba(109, 40, 217, 0.28), rgba(76, 29, 149, 0.28));
-  border: 1px solid rgba(168, 85, 247, 0.28);
-  color: #ffffff;
+  background: var(--chat-user-bubble-bg);
+  border: 1px solid var(--chat-user-bubble-border);
+  color: var(--chat-user-bubble-text);
   border-bottom-right-radius: 4px;
 }
 
 .chat-message-row.assistant .message-bubble {
-  background: rgba(15, 20, 36, 0.85);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-main);
+  background: var(--chat-assistant-bubble-bg);
+  border: 1px solid var(--chat-assistant-bubble-border);
+  color: var(--chat-assistant-bubble-text);
   border-bottom-left-radius: 4px;
 }
 
@@ -1525,7 +1748,7 @@ body {
 }
 
 .typing-bubble {
-  background: rgba(15, 20, 36, 0.75);
+  background: var(--chat-assistant-bubble-bg);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 8px 14px;
@@ -1554,7 +1777,7 @@ body {
 /* پیشنهادهای سریع پرسش */
 .chat-quick-prompts {
   padding: 8px 20px;
-  background: rgba(10, 14, 28, 0.5);
+  background: var(--chat-quick-bg);
   border-top: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -1569,7 +1792,7 @@ body {
 }
 
 .quick-chip {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--chip-bg);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
   padding: 4px 12px;
@@ -1581,7 +1804,7 @@ body {
 }
 
 .quick-chip:hover {
-  background: rgba(109, 40, 217, 0.2);
+  background: var(--chip-hover-bg);
   border-color: rgba(168, 85, 247, 0.35);
   color: var(--text-main);
 }
@@ -1589,7 +1812,7 @@ body {
 /* ورودی چت */
 .chat-input-bar {
   padding: 16px 20px 14px;
-  background: rgba(10, 14, 28, 0.9);
+  background: var(--chat-input-bar-bg);
   border-top: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
@@ -1612,8 +1835,8 @@ body {
   font-family: inherit;
   font-size: 0.95rem;
   color: var(--text-main);
-  background: rgba(18, 23, 41, 0.95);
-  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  background: var(--chat-input-bg);
+  border: 1.5px solid var(--chat-input-border);
   border-radius: var(--radius-md);
   padding: 12px 16px;
   max-height: 140px;
@@ -1625,7 +1848,7 @@ body {
 
 .chat-textarea:focus {
   outline: none;
-  border-color: var(--color-purple-bright);
+  border-color: var(--border-focus);
   box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.16);
 }
 
@@ -1674,7 +1897,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(0, 0, 0, 0.75);
+  background: var(--bg-modal-overlay);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   display: flex;
@@ -1685,7 +1908,7 @@ body {
 }
 
 .modal-dialog {
-  background: var(--bg-secondary);
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-xl);
   max-width: 640px;
@@ -1736,7 +1959,7 @@ body {
 
 .modal-close-btn:hover {
   color: var(--text-main);
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--chip-bg);
 }
 
 .modal-body {
@@ -1757,7 +1980,7 @@ body {
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
-  background: rgba(10, 14, 28, 0.4);
+  background: var(--bg-secondary);
 }
 
 /* 13. انیمیشن‌ها (Animations) */
@@ -1822,11 +2045,46 @@ body {
   }
 
   .header-container {
-    padding: 10px 16px;
+    padding: 12px 16px;
+    min-height: 64px;
+  }
+
+  .header-brand-start {
+    gap: 8px;
   }
 
   .brand-sub {
     display: none;
+  }
+
+  .brand-emblem {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-emblem svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .header-user-badge {
+    padding: 4px 10px;
+    font-size: 0.78rem;
+    gap: 6px;
+    max-width: 125px;
+  }
+
+  .user-badge-name {
+    max-width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .header-btn {
+    padding: 5px 10px;
+    font-size: 0.78rem;
+    gap: 4px;
   }
 
   .main-wrapper {
@@ -1839,27 +2097,38 @@ body {
 
   .hero-brand-calligraphy {
     font-size: 3.2rem;
-    line-height: 1.5;
-    padding: 6px 14px;
+    line-height: 1.65;
+    padding: 30px 22px 14px 22px;
+    margin-top: -18px;
+    margin-bottom: 2px;
     letter-spacing: 0 !important;
+    overflow: visible;
+    display: inline-block;
+    transform: translateY(4px);
   }
 
   .hero-brand-subtitle {
     font-size: 0.88rem;
+    margin-top: 2px;
   }
 
   .brand-name.brand-nastaliq {
     font-size: 1.45rem;
-    line-height: 1.35;
+    line-height: 1.65;
+    padding: 16px 10px 6px 10px;
+    margin-top: -10px;
+    margin-bottom: 0;
     letter-spacing: 0 !important;
-    transform: translateY(2px);
+    transform: translateY(4px);
   }
 
   .chat-brand-title.brand-nastaliq {
     font-size: 1.4rem;
-    line-height: 1.35;
+    line-height: 1.6;
+    padding: 12px 8px 4px 8px;
+    margin-top: -6px;
     letter-spacing: 0 !important;
-    transform: translateY(1px);
+    transform: translateY(2px);
   }
 
   .welcome-title {
@@ -1929,6 +2198,61 @@ body {
 
   .step-nav-bar .btn {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 10px 12px;
+    min-height: 60px;
+  }
+
+  .header-brand-start {
+    gap: 6px;
+  }
+
+  .brand-emblem {
+    width: 34px;
+    height: 34px;
+  }
+
+  .brand-emblem svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .brand-name.brand-nastaliq {
+    font-size: 1.35rem;
+    padding: 14px 8px 4px 8px;
+    margin-top: -8px;
+    transform: translateY(3px);
+  }
+
+  .hero-brand-calligraphy {
+    font-size: 2.75rem;
+    line-height: 1.65;
+    padding: 24px 18px 10px 18px;
+    margin-top: -14px;
+    transform: translateY(3px);
+  }
+
+  .header-btn {
+    padding: 5px 8px;
+    font-size: 0.75rem;
+  }
+
+  .header-btn span {
+    display: none;
+  }
+
+  .user-badge-label {
+    display: none;
+  }
+
+  .header-user-badge {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    max-width: 95px;
   }
 }
 
@@ -2022,8 +2346,8 @@ body {
 .sources-callout-wrap {
   margin-top: 14px;
   padding: 14px;
-  background: rgba(7, 10, 22, 0.8);
-  border: 1px solid rgba(168, 85, 247, 0.25);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
@@ -2053,7 +2377,7 @@ body {
 }
 
 .source-item-card {
-  background: rgba(18, 23, 41, 0.7);
+  background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
@@ -2064,8 +2388,8 @@ body {
 }
 
 .source-item-card:hover {
-  border-color: rgba(168, 85, 247, 0.4);
-  background: rgba(24, 30, 52, 0.85);
+  border-color: var(--color-purple-bright);
+  background: var(--bg-card-hover);
 }
 
 .source-card-top-row {
@@ -2079,7 +2403,7 @@ body {
 .source-article-badge {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-main);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -2121,7 +2445,7 @@ body {
   justify-content: space-between;
   gap: 8px;
   padding-top: 4px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.06);
+  border-top: 1px dashed var(--border-subtle);
   font-size: 0.72rem;
   color: var(--text-muted);
 }
@@ -2137,7 +2461,7 @@ body {
 }
 
 .source-link-btn:hover {
-  color: #ffffff;
+  color: var(--color-purple-main);
   text-decoration: underline;
 }
 
@@ -2148,7 +2472,7 @@ body {
   margin-top: 14px;
   margin-bottom: 6px;
   font-weight: 700;
-  border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+  border-bottom: 1px solid var(--border-subtle);
   padding-bottom: 3px;
 }
 
@@ -2171,7 +2495,7 @@ body {
 }
 
 .legal-reply-content strong {
-  color: #ffffff;
+  color: var(--text-main);
 }
 
 /* دکمه لغو در زمان پردازش */

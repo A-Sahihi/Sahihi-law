@@ -22,12 +22,22 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./style.css" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('sahihi_theme');
+          var theme = saved === 'light' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <!-- Top Persistent Application Bar -->
     <header class="app-header" id="app-header">
       <div class="header-container">
-        <div class="header-brand">
+        <!-- نماد تصویری و لوگوی کوچک برند در سمت راست نوار بالایی -->
+        <div class="header-brand-start">
           <div class="brand-emblem" aria-hidden="true">
             <svg
               viewBox="0 0 24 24"
@@ -42,26 +52,57 @@
               <path d="M12 3v18M6 8l6-3 6 3M3 14l3-6 3 6M15 14l3-6 3 6M3 14a3 3 0 0 0 6 0M15 14a3 3 0 0 0 6 0" />
             </svg>
           </div>
+
+          <!-- Animated User Badge (Shown after step 1) -->
+          <div class="header-user-badge" id="header-user-badge" style="display: none;">
+            <span class="user-badge-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </span>
+            <span class="user-badge-label">کاربر:</span>
+            <strong class="user-badge-name" id="header-user-name"></strong>
+          </div>
+        </div>
+
+        <!-- فقط عنوان «صحیحی» دقیقاً در مرکز افقی نوار -->
+        <div class="header-brand-center">
           <div class="brand-text">
             <span class="brand-name brand-nastaliq">صحیحی</span>
             <span class="brand-sub">دستیار حقوقی هوشمند ایران</span>
           </div>
         </div>
 
-        <!-- Animated User Badge (Shown after step 1) -->
-        <div class="header-user-badge" id="header-user-badge" style="display: none;">
-          <span class="user-badge-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-          </span>
-          <span class="user-badge-label">کاربر:</span>
-          <strong class="user-badge-name" id="header-user-name"></strong>
-        </div>
-
         <!-- Header Actions -->
         <div class="header-actions">
+          <!-- دکمه تغییر حالت روز/شب (Light/Dark Mode) -->
+          <button
+            type="button"
+            class="header-btn theme-toggle-btn"
+            id="btn-theme-toggle"
+            aria-label="تغییر حالت نمایش به روشن یا تاریک"
+            title="تغییر به حالت روشن"
+          >
+            <!-- آیکون خورشید (نمایش در حالت تاریک برای رفتن به حالت روشن) -->
+            <svg class="theme-icon icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <!-- آیکون ماه (نمایش در حالت روشن برای رفتن به حالت تاریک) -->
+            <svg class="theme-icon icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="theme-toggle-label" id="theme-toggle-label">حالت روشن</span>
+          </button>
+
           <button
             type="button"
             class="header-btn"

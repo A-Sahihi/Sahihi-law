@@ -1760,10 +1760,77 @@ function setupModals() {
 }
 
 // ============================================================================
-// ۱۲. راه‌اندازی اولیه اپلیکیشن در زمان بارگذاری DOM
+// ۱۲. مدیریت حالت تاریک و روشن (Dark / Light Theme Toggle)
+// ============================================================================
+
+const THEME_STORAGE_KEY = 'sahihi_theme';
+
+function getCurrentTheme() {
+  const currentAttr = document.documentElement.getAttribute('data-theme');
+  if (currentAttr === 'light' || currentAttr === 'dark') {
+    return currentAttr;
+  }
+  try {
+    const saved = localStorage.getItem(THEME_STORAGE_KEY);
+    if (saved === 'light' || saved === 'dark') return saved;
+  } catch (e) {}
+  return 'dark'; // حالت تاریک پیش‌فرض
+}
+
+function applyTheme(theme, persist = true) {
+  const targetTheme = theme === 'light' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', targetTheme);
+
+  const toggleBtn = document.getElementById('btn-theme-toggle');
+  const toggleLabel = document.getElementById('theme-toggle-label');
+
+  if (targetTheme === 'light') {
+    if (toggleBtn) {
+      toggleBtn.setAttribute('title', 'تغییر به حالت تاریک');
+      toggleBtn.setAttribute('aria-label', 'حالت فعلی: روشن. کلیک برای تغییر به حالت تاریک');
+    }
+    if (toggleLabel) {
+      toggleLabel.textContent = 'حالت تاریک';
+    }
+  } else {
+    if (toggleBtn) {
+      toggleBtn.setAttribute('title', 'تغییر به حالت روشن');
+      toggleBtn.setAttribute('aria-label', 'حالت فعلی: تاریک. کلیک برای تغییر به حالت روشن');
+    }
+    if (toggleLabel) {
+      toggleLabel.textContent = 'حالت روشن';
+    }
+  }
+
+  if (persist) {
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, targetTheme);
+    } catch (e) {
+      console.warn('عدم امکان دسترسی به localStorage جهت ذخیره تم:', e);
+    }
+  }
+}
+
+function setupTheme() {
+  const toggleBtn = document.getElementById('btn-theme-toggle');
+  const initialTheme = getCurrentTheme();
+  applyTheme(initialTheme, false);
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const current = getCurrentTheme();
+      const nextTheme = current === 'light' ? 'dark' : 'light';
+      applyTheme(nextTheme, true);
+    });
+  }
+}
+
+// ============================================================================
+// ۱۳. راه‌اندازی اولیه اپلیکیشن در زمان بارگذاری DOM
 // ============================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  setupTheme();
   setupStep1();
   setupStep2();
   setupStep3();
@@ -1775,4 +1842,5 @@ document.addEventListener('DOMContentLoaded', () => {
   // شروع در مرحله اول
   setStep(1);
 });
+
 
