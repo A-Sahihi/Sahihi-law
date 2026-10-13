@@ -1,0 +1,227 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <defs>
+    <!-- Background Vignette and Studio Shadows -->
+    <radialGradient id="bgStudioGrad" cx="42%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#1f2327" />
+      <stop offset="45%" stop-color="#151719" />
+      <stop offset="80%" stop-color="#0d0e10" />
+      <stop offset="100%" stop-color="#08090a" />
+    </radialGradient>
+
+    <!-- Warm Golden Light Glow behind Scale -->
+    <radialGradient id="goldGlow" cx="40%" cy="38%" r="40%">
+      <stop offset="0%" stop-color="rgba(234, 179, 8, 0.16)" />
+      <stop offset="50%" stop-color="rgba(217, 119, 6, 0.06)" />
+      <stop offset="100%" stop-color="transparent" />
+    </radialGradient>
+
+    <!-- Pedestal Step Gradients -->
+    <linearGradient id="stepTop1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a2e33" />
+      <stop offset="50%" stop-color="#222529" />
+      <stop offset="100%" stop-color="#191b1d" />
+    </linearGradient>
+
+    <linearGradient id="stepSide1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1d2023" />
+      <stop offset="50%" stop-color="#141618" />
+      <stop offset="100%" stop-color="#0c0d0f" />
+    </linearGradient>
+
+    <linearGradient id="stepRimLight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.02)" />
+      <stop offset="35%" stop-color="rgba(212,175,55,0.22)" />
+      <stop offset="70%" stop-color="rgba(255,255,255,0.08)" />
+      <stop offset="100%" stop-color="rgba(0,0,0,0.5)" />
+    </linearGradient>
+
+    <!-- Luxury Gold Metallic Gradients for Scale -->
+    <linearGradient id="goldArch" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="25%" stop-color="#eab308" />
+      <stop offset="55%" stop-color="#ca8a04" />
+      <stop offset="85%" stop-color="#a16207" />
+      <stop offset="100%" stop-color="#713f12" />
+    </linearGradient>
+
+    <linearGradient id="goldBeam" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="20%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#eab308" />
+      <stop offset="80%" stop-color="#fde047" />
+      <stop offset="100%" stop-color="#92400e" />
+    </linearGradient>
+
+    <linearGradient id="goldPanRim" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3" />
+      <stop offset="40%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <linearGradient id="goldPanBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="30%" stop-color="#eab308" />
+      <stop offset="60%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <linearGradient id="chainLink" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#854d0e" />
+    </linearGradient>
+
+    <!-- Drop Shadows for 3D realism -->
+    <filter id="pedestalShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="18" stdDeviation="25" flood-color="#000000" flood-opacity="0.8" />
+    </filter>
+
+    <filter id="goldScaleShadow" x="-20%" y="-10%" width="140%" height="130%">
+      <feDropShadow dx="12" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.65" />
+    </filter>
+  </defs>
+
+  <!-- Deep Moody Studio Canvas -->
+  <rect width="1600" height="900" fill="url(#bgStudioGrad)" />
+
+  <!-- Ambient Light Reflection on Stage floor -->
+  <ellipse cx="640" cy="720" rx="600" ry="160" fill="rgba(24, 26, 29, 0.6)" />
+  <ellipse cx="580" cy="380" rx="360" ry="320" fill="url(#goldGlow)" />
+
+  <!-- ======================================================== -->
+  <!-- 3-TIER DARK CHARCOAL CIRCULAR STEPS PEDESTAL             -->
+  <!-- ======================================================== -->
+  <g id="pedestal" filter="url(#pedestalShadow)">
+    <!-- Base Step 1 (Bottom Tier) -->
+    <g id="tier-bottom">
+      <!-- Side / Rim -->
+      <path d="M 120 740 
+               C 120 830, 960 830, 960 740 
+               L 960 810 
+               C 960 900, 120 900, 120 810 Z" 
+            fill="url(#stepSide1)" />
+      <!-- Top Surface -->
+      <ellipse cx="540" cy="740" rx="420" ry="85" fill="url(#stepTop1)" stroke="url(#stepRimLight)" stroke-width="2" />
+    </g>
+
+    <!-- Middle Step 2 (Mid Tier) -->
+    <g id="tier-middle">
+      <path d="M 240 650 
+               C 240 730, 840 730, 840 650 
+               L 840 710 
+               C 840 790, 240 790, 240 710 Z" 
+            fill="#16181b" />
+      <ellipse cx="540" cy="650" rx="300" ry="62" fill="#25292e" stroke="url(#stepRimLight)" stroke-width="1.8" />
+      <!-- Shadow on middle step -->
+      <ellipse cx="540" cy="654" rx="290" ry="56" fill="rgba(0,0,0,0.35)" />
+    </g>
+
+    <!-- Top Step 3 (Upper Plinth) -->
+    <g id="tier-top">
+      <path d="M 370 560 
+               C 370 630, 710 630, 710 560 
+               L 710 605 
+               C 710 675, 370 675, 370 605 Z" 
+            fill="#121416" />
+      <ellipse cx="540" cy="560" rx="170" ry="38" fill="#2b2f35" stroke="url(#stepRimLight)" stroke-width="1.5" />
+      
+      <!-- Stepped Stair Blocks to the right of pedestal (as seen in artwork) -->
+      <path d="M 640 565 L 790 565 L 790 600 L 640 600 Z" fill="#1d2024" />
+      <path d="M 680 600 L 830 600 L 830 638 L 680 638 Z" fill="#17191b" />
+      <path d="M 720 638 L 880 638 L 880 680 L 720 680 Z" fill="#131517" />
+    </g>
+  </g>
+
+  <!-- ======================================================== -->
+  <!-- GOLDEN SCALES OF JUSTICE (ترازوی طلایی عدالت)             -->
+  <!-- ======================================================== -->
+  <g id="scales-of-justice" filter="url(#goldScaleShadow)">
+    
+    <!-- Heavy Gold Base / Mount on Top Plinth -->
+    <ellipse cx="540" cy="552" rx="100" ry="22" fill="#451a03" />
+    <path d="M 450 545 C 450 565, 630 565, 630 545 L 610 535 C 610 520, 470 520, 470 535 Z" fill="url(#goldArch)" />
+    <ellipse cx="540" cy="535" rx="70" ry="15" fill="#fef08a" stroke="#ca8a04" stroke-width="1" />
+
+    <!-- Modern Minimalist Golden Crescent Support Arch -->
+    <path d="M 525 530 
+             C 410 490, 360 380, 390 260 
+             C 420 160, 520 120, 660 145 
+             L 655 162 
+             C 530 140, 440 180, 412 265 
+             C 388 360, 430 460, 535 500 Z" 
+          fill="url(#goldArch)" />
+
+    <!-- Central Vertical Pillar -->
+    <rect x="534" y="160" width="12" height="365" rx="6" fill="url(#goldArch)" />
+    <line x1="538" y1="170" x2="538" y2="520" stroke="#fef08a" stroke-width="2.5" opacity="0.8" />
+    <ellipse cx="540" cy="160" rx="9" ry="9" fill="#fef08a" />
+    <ellipse cx="540" cy="245" rx="16" ry="16" fill="url(#goldArch)" stroke="#fef9c3" stroke-width="1.5" />
+
+    <!-- Horizontal Balance Beam -->
+    <path d="M 400 240 
+             C 460 234, 520 232, 540 232 
+             C 560 232, 620 234, 680 240 
+             L 678 250 
+             C 620 244, 560 242, 540 242 
+             C 520 242, 460 244, 402 250 Z" 
+          fill="url(#goldBeam)" />
+
+    <!-- Decorative Pivot Highlights -->
+    <ellipse cx="540" cy="242" rx="7" ry="7" fill="#fef9c3" />
+    <circle cx="410" cy="246" r="5" fill="#fef08a" />
+    <circle cx="670" cy="246" r="5" fill="#fef08a" />
+
+    <!-- ============================================== -->
+    <!-- LEFT BALANCE PAN AND CHAINS                    -->
+    <!-- ============================================== -->
+    <g id="left-scale">
+      <!-- 4 Golden Suspension Chains -->
+      <!-- Chain 1 -->
+      <line x1="410" y1="250" x2="355" y2="395" stroke="url(#chainLink)" stroke-width="1.5" stroke-dasharray="3,2" />
+      <line x1="410" y1="250" x2="400" y2="400" stroke="url(#chainLink)" stroke-width="1.5" stroke-dasharray="3,2" />
+      <line x1="410" y1="250" x2="445" y2="398" stroke="url(#chainLink)" stroke-width="1.5" stroke-dasharray="3,2" />
+      <line x1="410" y1="250" x2="480" y2="395" stroke="url(#chainLink)" stroke-width="1.5" stroke-dasharray="3,2" />
+
+      <!-- Left Golden Pan (کفه سمت چپ) -->
+      <path d="M 350 395 
+               C 350 440, 485 440, 485 395 
+               C 485 385, 350 385, 350 395 Z" 
+            fill="url(#goldPanBody)" />
+      
+      <!-- Pan Lip / Rim -->
+      <ellipse cx="417" cy="395" rx="68" ry="14" fill="url(#goldPanRim)" />
+      <!-- Interior Bowl Reflection -->
+      <ellipse cx="417" cy="396" rx="63" ry="11" fill="#713f12" />
+      <ellipse cx="415" cy="397" rx="55" ry="8" fill="#a16207" />
+      <ellipse cx="405" cy="398" rx="35" ry="5" fill="#fef08a" opacity="0.6" />
+    </g>
+
+    <!-- ============================================== -->
+    <!-- RIGHT BALANCE PAN AND CHAINS                   -->
+    <!-- ============================================== -->
+    <g id="right-scale">
+      <!-- 4 Golden Suspension Chains -->
+      <line x1="670" y1="250" x2="615" y2="405" stroke="url(#chainLink)" stroke-width="1.5" stroke-dasharray="3,2" />
+      <line x1="670" y1="250" x2="660" y2="410" stroke="url(#chainLink)" stroke-width="1.5" stroke-dasharray="3,2" />
+      <line x1="670" y1="250" x2="705" y2="408" stroke="url(#chainLink)" stroke-width="1.5" stroke-dasharray="3,2" />
+      <line x1="670" y1="250" x2="745" y2="405" stroke="url(#chainLink)" stroke-width="1.5" stroke-dasharray="3,2" />
+
+      <!-- Right Golden Pan (کفه سمت راست) -->
+      <path d="M 610 405 
+               C 610 450, 750 450, 750 405 
+               C 750 395, 610 395, 610 405 Z" 
+            fill="url(#goldPanBody)" />
+
+      <!-- Pan Lip / Rim -->
+      <ellipse cx="680" cy="405" rx="70" ry="14" fill="url(#goldPanRim)" />
+      <!-- Interior Bowl Reflection -->
+      <ellipse cx="680" cy="406" rx="65" ry="11" fill="#78350f" />
+      <ellipse cx="678" cy="407" rx="56" ry="8" fill="#ca8a04" />
+      <ellipse cx="665" cy="408" rx="38" ry="5" fill="#fef08a" opacity="0.65" />
+    </g>
+
+  </g>
+
+  <!-- Right side elegant negative space gradient / vignette -->
+  <rect x="900" y="0" width="700" height="900" fill="url(#bgStudioGrad)" opacity="0.75" />
+</svg>

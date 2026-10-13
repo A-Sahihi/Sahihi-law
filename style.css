@@ -16,82 +16,99 @@
 }
 
 :root {
-  /* پالت رنگ‌های پایه (حالت تاریک پیش‌فرض) */
-  --bg-primary: #070913;
-  --bg-secondary: #0d1122;
-  --bg-card: rgba(18, 23, 41, 0.75);
-  --bg-card-hover: rgba(28, 35, 62, 0.85);
-  --bg-card-active: rgba(36, 24, 70, 0.85);
-  --bg-card-solid: #121729;
-  --bg-surface-elevated: #151b33;
-  --bg-input: rgba(18, 23, 41, 0.85);
-  --bg-input-focus: rgba(22, 28, 50, 0.95);
-  --bg-header: rgba(7, 9, 19, 0.85);
-  --bg-modal-overlay: rgba(0, 0, 0, 0.75);
-  --bg-steps-wrapper: rgba(13, 17, 34, 0.6);
+  /* پالت هدف تم تاریک: نوک‌مدادی، خاکستری تیره و زغالی */
+  --bg-primary: #181A1B;
+  --bg-secondary: #222527;
+  --bg-card: #222527;
+  --bg-card-hover: #2B2F32;
+  --bg-card-active: #2B2F32;
+  --bg-card-solid: #222527;
+  --bg-surface-elevated: #2B2F32;
+  --bg-input: #181A1B;
+  --bg-input-focus: #222527;
+  --bg-header: rgba(24, 26, 27, 0.94);
+  --bg-modal-overlay: rgba(0, 0, 0, 0.82);
+  --bg-steps-wrapper: #222527;
 
-  /* پس‌زمینه کلی صفحه */
-  --body-bg-gradient: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(109, 40, 217, 0.22), transparent 70%),
-                      radial-gradient(circle at 10% 80%, rgba(76, 29, 149, 0.12), transparent 50%);
+  /* پس‌زمینه کلی صفحه در تم تاریک: اتمسفر زغالی و متالیک عمیق */
+  --body-bg-gradient: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(58, 63, 67, 0.35), transparent 70%),
+                      radial-gradient(circle at 10% 80%, rgba(43, 47, 50, 0.25), transparent 50%);
 
-  /* گرادیان‌ها */
-  --grad-primary: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 50%, #7c3aed 100%);
-  --grad-hero: radial-gradient(circle at 50% 10%, rgba(139, 92, 246, 0.18) 0%, rgba(10, 14, 28, 0) 70%);
-  --grad-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  /* گرادیان‌ها و دکمه‌های اصلی */
+  --grad-primary: linear-gradient(135deg, #353B40 0%, #41474D 50%, #353B40 100%);
+  --grad-hero: radial-gradient(circle at 50% 10%, rgba(139, 148, 158, 0.12) 0%, rgba(24, 26, 27, 0) 70%);
+  --grad-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
 
-  /* رنگ‌های بنفش برند */
-  --color-purple-deep: #4c1d95;
-  --color-purple-main: #6d28d9;
-  --color-purple-bright: #a855f7;
-  --color-purple-light: #c084fc;
-  --color-purple-glow: rgba(168, 85, 247, 0.35);
+  /* رنگ‌های تأکیدی و کلیدهای اصلی */
+  --color-accent-main: #8B949E;
+  --color-accent-active: #AEB6BE;
+  --color-btn-primary-bg: #353B40;
+  --color-btn-primary-text: #FFFFFF;
+  --color-btn-primary-hover: #41474D;
+  --color-btn-primary-active: #4B5259;
 
-  /* رنگ‌های متن */
-  --text-main: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-inverse: #070913;
+  /* رنگ‌های تم تاریک جایگزین بنفش با خاکستری، زغالی و نقره‌ای */
+  --color-purple-deep: #2B2F32;
+  --color-purple-main: #353B40;
+  --color-purple-bright: #8B949E;
+  --color-purple-light: #AEB6BE;
+  --color-purple-glow: rgba(139, 148, 158, 0.22);
 
-  /* حاشیه‌ها و خطوط */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-card: rgba(168, 85, 247, 0.18);
-  --border-focus: rgba(192, 132, 252, 0.8);
-  --border-input: rgba(255, 255, 255, 0.12);
+  /* متغیرهای رنگ متن */
+  --text-main: #F1F3F4;
+  --text-secondary: #B0B6BB;
+  --text-muted: #8B949E;
+  --text-inverse: #181A1B;
 
-  /* گرادیان‌های خوشنویسی برند «صحیحی» */
-  --logo-header-gradient: linear-gradient(135deg, #ffffff 40%, #c084fc 100%);
-  --logo-hero-gradient: linear-gradient(135deg, #ffffff 0%, #f3e8ff 45%, #c084fc 100%);
-  --logo-hero-shadow: drop-shadow(0 4px 22px rgba(168, 85, 247, 0.5));
-  --logo-chat-gradient: linear-gradient(135deg, #ffffff 30%, #c084fc 100%);
+  /* حاشیه‌ها و خطوط جداکننده */
+  --border-subtle: #3A3F43;
+  --border-card: #3A3F43;
+  --border-focus: #AEB6BE;
+  --border-input: #3A3F43;
+
+  /* متغیرهای تصویر پس‌زمینه سربرگ (ترازوی عدالت طلایی بر روی پله‌های زغالی) */
+  --hero-image-url: url('/hero-justice-bg.svg');
+  --hero-image-zoom: cover;
+  --hero-image-position-x: center;
+  --hero-image-position-y: 35%;
+  --hero-image-repeat: no-repeat;
+  --hero-overlay-opacity: 0.72;
+  --hero-overlay-bg: rgba(24, 26, 27, 0.72);
+
+  /* گرادیان‌های خوشنویسی برند «صحیحی» در تم تاریک: نقره‌ای-متالیک زغالی */
+  --logo-header-gradient: linear-gradient(135deg, #FFFFFF 40%, #E2E8F0 70%, #CBD5E1 100%);
+  --logo-hero-gradient: linear-gradient(135deg, #FFFFFF 0%, #F1F3F4 45%, #D1D5DB 75%, #AEB6BE 100%);
+  --logo-hero-shadow: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.75));
+  --logo-chat-gradient: linear-gradient(135deg, #FFFFFF 30%, #D1D5DB 100%);
 
   /* حباب‌های چت */
-  --chat-bg-wrapper: rgba(18, 23, 41, 0.8);
-  --chat-bg-header: rgba(10, 14, 28, 0.8);
-  --chat-user-bubble-bg: linear-gradient(135deg, rgba(109, 40, 217, 0.32), rgba(76, 29, 149, 0.32));
-  --chat-user-bubble-border: rgba(168, 85, 247, 0.32);
-  --chat-user-bubble-text: #ffffff;
-  --chat-assistant-bubble-bg: rgba(15, 20, 36, 0.9);
-  --chat-assistant-bubble-border: rgba(255, 255, 255, 0.08);
-  --chat-assistant-bubble-text: #f8fafc;
-  --chat-meta-bar-bg: rgba(10, 14, 28, 0.55);
-  --chat-quick-bg: rgba(10, 14, 28, 0.5);
-  --chat-input-bar-bg: rgba(10, 14, 28, 0.9);
-  --chat-input-bg: rgba(18, 23, 41, 0.95);
-  --chat-input-border: rgba(255, 255, 255, 0.12);
-  --chip-bg: rgba(255, 255, 255, 0.04);
-  --chip-hover-bg: rgba(109, 40, 217, 0.2);
+  --chat-bg-wrapper: #222527;
+  --chat-bg-header: #181A1B;
+  --chat-user-bubble-bg: #353B40;
+  --chat-user-bubble-border: #3A3F43;
+  --chat-user-bubble-text: #FFFFFF;
+  --chat-assistant-bubble-bg: #2B2F32;
+  --chat-assistant-bubble-border: #3A3F43;
+  --chat-assistant-bubble-text: #F1F3F4;
+  --chat-meta-bar-bg: rgba(24, 26, 27, 0.65);
+  --chat-quick-bg: #2B2F32;
+  --chat-input-bar-bg: #181A1B;
+  --chat-input-bg: #222527;
+  --chat-input-border: #3A3F43;
+  --chip-bg: #2B2F32;
+  --chip-hover-bg: #353B40;
 
   /* اسکرول‌بار */
-  --scrollbar-track: rgba(10, 14, 28, 0.7);
-  --scrollbar-thumb: rgba(139, 92, 246, 0.3);
-  --scrollbar-thumb-hover: rgba(168, 85, 247, 0.5);
+  --scrollbar-track: #181A1B;
+  --scrollbar-thumb: #3A3F43;
+  --scrollbar-thumb-hover: #8B949E;
 
   /* وضعیت‌ها */
-  --color-success: #10b981;
+  --color-success: #10B981;
   --color-success-bg: rgba(16, 185, 129, 0.12);
-  --color-error: #f43f5e;
-  --color-error-bg: rgba(244, 63, 94, 0.14);
-  --color-warning: #f59e0b;
+  --color-error: #EF4444;
+  --color-error-bg: rgba(239, 68, 68, 0.14);
+  --color-warning: #F59E0B;
   --color-warning-bg: rgba(245, 158, 11, 0.12);
 
   /* اندازه‌ها و شعاع گردی */
@@ -102,10 +119,10 @@
   --radius-full: 9999px;
 
   /* سایه‌ها */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 35px -5px rgba(139, 92, 246, 0.3);
-  --shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 10px 30px -5px rgba(0, 0, 0, 0.65);
+  --shadow-glow: 0 0 25px -5px rgba(139, 148, 158, 0.18);
+  --shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 
   /* فونت‌ها */
   --font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'IranSans', Tahoma, sans-serif;
@@ -115,6 +132,9 @@
   /* فواصل و متغیرهای سرعت انیمیشن */
   --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ابعاد مرجع نوار بالایی جهت هماهنگی تراز عمودی و اسکرول */
+  --app-header-height: 128px;
 }
 
 /* ==========================================================================
@@ -151,6 +171,18 @@
   --color-purple-bright: #7c3aed;
   --color-purple-light: #6d28d9;
   --color-purple-glow: rgba(109, 40, 217, 0.2);
+
+  /* دکمه‌های اصلی و رنگ‌های تأکیدی تم روشن */
+  --color-btn-primary-bg: #6d28d9;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-hover: #7c3aed;
+  --color-btn-primary-active: #5b21b6;
+  --color-accent-main: #6d28d9;
+  --color-accent-active: #7c3aed;
+
+  /* لایه پوششی تصویر پس‌زمینه برای تم روشن */
+  --hero-overlay-opacity: 0.90;
+  --hero-overlay-bg: rgba(248, 250, 252, 0.90);
 
   /* رنگ‌های متن (تیره با کنتراست بالا و خوانایی عالی) */
   --text-main: #0f172a;
@@ -225,6 +257,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--app-header-height, 128px) + 16px);
 }
 
 body {
@@ -309,13 +342,13 @@ body {
   width: 42px;
   height: 42px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, rgba(109, 40, 217, 0.4), rgba(168, 85, 247, 0.2));
-  border: 1px solid rgba(168, 85, 247, 0.4);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-purple-light);
-  box-shadow: 0 0 16px rgba(139, 92, 246, 0.2);
+  box-shadow: var(--shadow-sm);
   flex-shrink: 0;
 }
 
@@ -396,7 +429,7 @@ body {
 .brand-logo-svg.hero-size {
   height: 110px;
   max-width: 220px;
-  filter: drop-shadow(0 4px 25px rgba(168, 85, 247, 0.55));
+  filter: var(--logo-hero-shadow);
 }
 
 .brand-logo-svg.chat-size {
@@ -415,8 +448,8 @@ body {
   align-items: center;
   gap: 8px;
   padding: 6px 14px;
-  background: rgba(109, 40, 217, 0.15);
-  border: 1px solid rgba(168, 85, 247, 0.3);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
   font-size: 0.85rem;
   animation: fadeInDown 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -619,13 +652,14 @@ body {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 32px 20px 48px;
+  padding: 36px 20px 48px;
   display: flex;
   flex-direction: column;
 }
 
 .step-section {
   animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  scroll-margin-top: calc(var(--app-header-height, 128px) + 20px);
 }
 
 .section-container {
@@ -684,23 +718,24 @@ body {
 }
 
 .btn-primary {
-  background: var(--grad-primary);
-  color: #ffffff;
-  box-shadow: 0 4px 18px rgba(109, 40, 217, 0.4);
+  background: var(--color-btn-primary-bg);
+  color: var(--color-btn-primary-text);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
-  box-shadow: 0 6px 24px rgba(139, 92, 246, 0.5);
+  background: var(--color-btn-primary-hover);
+  box-shadow: var(--shadow-md);
   transform: translateY(-1px);
 }
 
 .btn-primary:active:not(:disabled) {
+  background: var(--color-btn-primary-active);
   transform: translateY(1px);
 }
 
 .btn-glow {
-  box-shadow: 0 0 25px rgba(168, 85, 247, 0.5);
+  box-shadow: var(--shadow-glow);
 }
 
 .btn-secondary {
@@ -748,15 +783,22 @@ body {
 
 .welcome-hero-card {
   position: relative;
-  background: var(--bg-card);
+  background-color: var(--bg-card);
+  background-image: 
+    linear-gradient(var(--hero-overlay-bg), var(--hero-overlay-bg)),
+    var(--hero-image-url);
+  background-size: auto, var(--hero-image-zoom);
+  background-position: center, var(--hero-image-position-x) var(--hero-image-position-y);
+  background-repeat: no-repeat;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-xl);
-  padding: 48px 40px;
+  padding: 48px 36px 36px;
   text-align: center;
   box-shadow: var(--shadow-md);
   overflow: hidden;
+  scroll-margin-top: calc(var(--app-header-height, 128px) + 24px);
 }
 
 .hero-glow-effect {
@@ -766,67 +808,52 @@ body {
   transform: translateX(-50%);
   width: 320px;
   height: 200px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--color-purple-glow) 0%, transparent 70%);
   pointer-events: none;
   filter: blur(30px);
 }
 
-.hero-brand-block {
+/* سربرگ اختصاصی صفحه نخست: ۱. لوگوی بزرگ خوشنویسی در مرکز ۲. عنوان اصلی در ردیف مستقل زیر آن */
+.welcome-brand-stack {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 22px;
+  text-align: center;
+  margin-bottom: 20px;
   position: relative;
   z-index: 2;
-  text-align: center;
+  overflow: visible;
+  width: 100%;
 }
 
-.hero-brand-calligraphy {
-  font-size: 4.8rem;
-  line-height: 1.68;
-  color: var(--color-purple-deep);
+.hero-brand-calligraphy.brand-nastaliq {
+  font-size: 4.2rem;
+  line-height: 1.85;
   background: var(--logo-hero-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
   filter: var(--logo-hero-shadow);
-  padding: 44px 36px 18px 36px;
-  margin-top: -24px;
-  margin-bottom: 2px;
+  padding: 30px 36px 14px 36px;
+  margin: 0 auto;
   letter-spacing: 0 !important;
   overflow: visible;
   display: inline-block;
-  transform: translateY(6px);
+  box-sizing: border-box;
+  max-width: 100%;
+  transform: none;
   transition: transform var(--transition-smooth);
 }
 
-.hero-brand-subtitle {
-  font-size: 1.05rem;
-  color: var(--color-purple-light);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  margin-top: 0;
-}
-
-.hero-badge {
-  display: inline-block;
-  padding: 6px 18px;
-  background: rgba(139, 92, 246, 0.12);
-  border: 1px solid rgba(168, 85, 247, 0.28);
-  border-radius: var(--radius-full);
-  color: var(--color-purple-light);
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 24px;
-}
-
 .welcome-title {
-  font-size: 2.4rem;
+  font-size: 2.1rem;
   font-weight: 800;
   color: var(--text-main);
-  line-height: 1.35;
-  margin-bottom: 16px;
+  line-height: 1.45;
+  margin-top: 6px;
+  margin-bottom: 0;
   background: var(--logo-header-gradient);
   -webkit-background-clip: text;
   background-clip: text;
@@ -955,7 +982,7 @@ body {
 
 .selection-card:hover {
   background: var(--bg-card-hover);
-  border-color: rgba(168, 85, 247, 0.35);
+  border-color: var(--border-focus);
   transform: translateY(-3px);
   box-shadow: var(--shadow-sm);
 }
@@ -968,7 +995,7 @@ body {
 .selection-card.selected {
   background: var(--bg-card-active);
   border-color: var(--color-purple-bright);
-  box-shadow: 0 0 30px rgba(168, 85, 247, 0.25);
+  box-shadow: var(--shadow-glow);
 }
 
 .card-radio-mark {
@@ -1002,8 +1029,8 @@ body {
   width: 60px;
   height: 60px;
   border-radius: var(--radius-lg);
-  background: rgba(109, 40, 217, 0.16);
-  border: 1px solid rgba(168, 85, 247, 0.3);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1084,7 +1111,8 @@ body {
 .category-count-badge {
   font-size: 0.8rem;
   color: var(--color-purple-light);
-  background: rgba(109, 40, 217, 0.15);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
   padding: 4px 12px;
   border-radius: var(--radius-full);
   white-space: nowrap;
@@ -1114,7 +1142,7 @@ body {
 
 .category-card:hover {
   background: var(--bg-card-hover);
-  border-color: rgba(168, 85, 247, 0.35);
+  border-color: var(--border-focus);
   transform: translateY(-2px);
 }
 
@@ -1126,7 +1154,7 @@ body {
 .category-card.selected {
   background: var(--bg-card-active);
   border-color: var(--color-purple-bright);
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.22);
+  box-shadow: var(--shadow-glow);
 }
 
 .category-card-top {
@@ -1139,8 +1167,8 @@ body {
   width: 44px;
   height: 44px;
   border-radius: var(--radius-md);
-  background: rgba(109, 40, 217, 0.18);
-  border: 1px solid rgba(168, 85, 247, 0.25);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1190,8 +1218,8 @@ body {
   align-items: center;
   gap: 8px;
   padding: 6px 18px;
-  background: rgba(109, 40, 217, 0.18);
-  border: 1px solid rgba(168, 85, 247, 0.35);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
   color: var(--color-purple-light);
   font-size: 0.88rem;
@@ -1260,7 +1288,7 @@ body {
 
 .option-chip:hover {
   background: var(--bg-card-hover);
-  border-color: rgba(168, 85, 247, 0.3);
+  border-color: var(--border-focus);
   color: var(--text-main);
 }
 
@@ -1269,11 +1297,11 @@ body {
 }
 
 .option-chip.selected {
-  background: rgba(109, 40, 217, 0.22);
+  background: var(--bg-card-active);
   border-color: var(--color-purple-bright);
   color: var(--text-main);
   font-weight: 600;
-  box-shadow: 0 0 14px rgba(168, 85, 247, 0.2);
+  box-shadow: var(--shadow-glow);
 }
 
 .option-chip-radio {
@@ -1310,7 +1338,7 @@ body {
   outline: none;
   border-color: var(--border-focus);
   background: var(--bg-input-focus);
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15);
+  box-shadow: 0 0 0 3px var(--color-purple-glow);
 }
 
 .form-textarea::placeholder {
@@ -1523,8 +1551,8 @@ body {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, rgba(109, 40, 217, 0.35), rgba(168, 85, 247, 0.2));
-  border: 1px solid rgba(168, 85, 247, 0.3);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1572,8 +1600,8 @@ body {
 
 .chat-phase-tag {
   font-size: 0.72rem;
-  background: rgba(168, 85, 247, 0.15);
-  border: 1px solid rgba(168, 85, 247, 0.3);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
   color: var(--color-purple-light);
   padding: 2px 8px;
   border-radius: var(--radius-full);
@@ -1667,9 +1695,9 @@ body {
 }
 
 .chat-message-row.user .message-avatar {
-  background: rgba(168, 85, 247, 0.2);
+  background: var(--bg-surface-elevated);
   color: var(--color-purple-light);
-  border: 1px solid rgba(168, 85, 247, 0.3);
+  border: 1px solid var(--border-subtle);
 }
 
 .chat-message-row.assistant .message-avatar {
@@ -1720,7 +1748,8 @@ body {
   display: inline-block;
   font-size: 0.72rem;
   color: var(--color-purple-light);
-  background: rgba(168, 85, 247, 0.12);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
   padding: 2px 8px;
   border-radius: var(--radius-full);
   margin-bottom: 6px;
@@ -1805,7 +1834,7 @@ body {
 
 .quick-chip:hover {
   background: var(--chip-hover-bg);
-  border-color: rgba(168, 85, 247, 0.35);
+  border-color: var(--border-focus);
   color: var(--text-main);
 }
 
@@ -1849,7 +1878,7 @@ body {
 .chat-textarea:focus {
   outline: none;
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.16);
+  box-shadow: 0 0 0 3px var(--color-purple-glow);
 }
 
 .chat-textarea::placeholder {
@@ -1860,22 +1889,27 @@ body {
   width: 48px;
   height: 48px;
   border-radius: var(--radius-md);
-  background: var(--grad-primary);
+  background: var(--color-btn-primary-bg);
   border: none;
-  color: #ffffff;
+  color: var(--color-btn-primary-text);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
-  box-shadow: 0 4px 14px rgba(109, 40, 217, 0.4);
+  box-shadow: var(--shadow-sm);
   transition: all var(--transition-fast);
 }
 
 .btn-chat-send:hover:not(:disabled) {
-  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
+  background: var(--color-btn-primary-hover);
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(139, 92, 246, 0.5);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-chat-send:active:not(:disabled) {
+  background: var(--color-btn-primary-active);
+  transform: translateY(1px);
 }
 
 .btn-chat-send:disabled {
@@ -2088,28 +2122,36 @@ body {
   }
 
   .main-wrapper {
-    padding: 20px 12px 36px;
+    padding: 24px 14px 36px;
+  }
+
+  .welcome-container {
+    margin: 18px auto 0;
   }
 
   .welcome-hero-card {
-    padding: 32px 20px;
+    padding: 38px 20px 28px;
   }
 
-  .hero-brand-calligraphy {
+  :root {
+    --app-header-height: 118px;
+    --hero-image-zoom: cover;
+    --hero-image-position-x: 50%;
+    --hero-image-position-y: 25%;
+    --hero-overlay-opacity: 0.78;
+  }
+
+  .welcome-brand-stack {
+    margin-bottom: 16px;
+    width: 100%;
+  }
+
+  .hero-brand-calligraphy.brand-nastaliq {
     font-size: 3.2rem;
-    line-height: 1.65;
-    padding: 30px 22px 14px 22px;
-    margin-top: -18px;
-    margin-bottom: 2px;
+    line-height: 1.8;
+    padding: 24px 24px 12px 24px;
     letter-spacing: 0 !important;
-    overflow: visible;
-    display: inline-block;
-    transform: translateY(4px);
-  }
-
-  .hero-brand-subtitle {
-    font-size: 0.88rem;
-    margin-top: 2px;
+    transform: none;
   }
 
   .brand-name.brand-nastaliq {
@@ -2228,12 +2270,42 @@ body {
     transform: translateY(3px);
   }
 
-  .hero-brand-calligraphy {
-    font-size: 2.75rem;
-    line-height: 1.65;
-    padding: 24px 18px 10px 18px;
-    margin-top: -14px;
-    transform: translateY(3px);
+  :root {
+    --app-header-height: 108px;
+    --hero-image-zoom: cover;
+    --hero-image-position-x: 50%;
+    --hero-image-position-y: 20%;
+    --hero-overlay-opacity: 0.82;
+  }
+
+  .main-wrapper {
+    padding: 20px 12px 32px;
+  }
+
+  .welcome-container {
+    margin: 14px auto 0;
+  }
+
+  .welcome-hero-card {
+    padding: 32px 16px 24px;
+  }
+
+  .welcome-brand-stack {
+    margin-bottom: 12px;
+    width: 100%;
+  }
+
+  .hero-brand-calligraphy.brand-nastaliq {
+    font-size: 2.5rem;
+    line-height: 1.75;
+    padding: 18px 18px 10px 18px;
+    letter-spacing: 0 !important;
+    transform: none;
+  }
+
+  .welcome-title {
+    font-size: 1.35rem;
+    line-height: 1.45;
   }
 
   .header-btn {
@@ -2288,8 +2360,8 @@ body {
 
 /* بنر راهنمای وضعیت پایگاه دانش و API Key */
 .api-notice-banner {
-  background: rgba(109, 40, 217, 0.15);
-  border: 1px solid rgba(168, 85, 247, 0.3);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 10px 16px;
   margin-bottom: 16px;
