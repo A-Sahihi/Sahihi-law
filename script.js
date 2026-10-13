@@ -1,8 +1,4 @@
-/**
- * @license
- * دستیار حقوقی هوشمند ایران - منطق فرانت‌اند (JavaScript خالص)
- * طراحی و پیاده‌سازی بر اساس قوانین جمهوری اسلامی ایران
- */
+import { generateLocalLegalAdvice, getLocalArticlesCatalog } from './src/client/localLegalAdvisor.ts';
 
 // ============================================================================
 // ۱. داده‌های پایه و موضوعات حقوقی
@@ -315,6 +311,26 @@ const CATEGORY_FORM_CONFIGS = {
 // ۲. مدیریت مرکزی وضعیت برنامه (Central App State)
 // ============================================================================
 
+const BACKEND_STORAGE_KEY = 'sahihi_custom_backend_url';
+
+function getStoredBackendUrl() {
+  try {
+    return (localStorage.getItem(BACKEND_STORAGE_KEY) || '').trim().replace(/\/+$/, '');
+  } catch (e) {
+    return '';
+  }
+}
+
+/** ساخت آدرس کامل API بر اساس سرور تنظیم‌شده یا سرور محلی */
+function getApiUrl(endpoint) {
+  const cleanEndpoint = endpoint.startsWith('/') ? endpoint : '/' + endpoint;
+  const custom = appState.customBackendUrl || getStoredBackendUrl();
+  if (custom) {
+    return `${custom}${cleanEndpoint}`;
+  }
+  return cleanEndpoint;
+}
+
 const appState = {
   currentStep: 1,
   sessionId: (typeof crypto !== 'undefined' && crypto.randomUUID ? 'sess_' + crypto.randomUUID().replace(/-/g, '') : 'sess_' + Date.now() + '_' + Math.random().toString(36).substring(2, 10)),
@@ -327,7 +343,10 @@ const appState = {
   chatMessages: [],
   isProcessing: false,
   activeAbortController: null,
-  hasApiKey: true
+  hasApiKey: true,
+  customBackendUrl: getStoredBackendUrl(),
+  backendMode: 'auto', // 'remote' | 'local' | 'auto'
+  isServerReachable: false
 };
 
 // ============================================================================
@@ -1222,26 +1241,36 @@ async function checkBackendHealth() {
   const statusText = document.getElementById('chat-ai-status-text');
 
   try {
-    const res = await fetch('/api/health');
+    const healthUrl = getApiUrl('/api/health');
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 4000);
+
+    const res = await fetch(healthUrl, { signal: controller.signal });
+    clearTimeout(timer);
+
     if (res.ok) {
       const data = await res.json();
       appState.hasApiKey = data.hasApiKey;
+      appState.isServerReachable = true;
+      appState.backendMode = 'remote';
 
       if (statusIndicator && statusText) {
-        if (data.hasApiKey) {
-          statusIndicator.className = 'ai-status-indicator';
-          statusText.textContent = 'سامانه فعال';
-        } else {
-          statusIndicator.className = 'ai-status-indicator warning';
-          statusText.textContent = 'در حال اتصال...';
-        }
+        statusIndicator.className = 'ai-status-indicator';
+        statusText.textContent = data.hasApiKey ? 'سامانه متصل (سرور هوشمند)' : 'سامانه متصل (پایگاه قوانین)';
       }
+      return true;
     }
+    throw new Error('سرور پاسخ معتبر نداد');
   } catch (e) {
+    // در صورت عدم دسترسی به سرور (مثلاً در GitHub Pages یا هاست استاتیک)
+    appState.isServerReachable = false;
+    appState.backendMode = 'local';
+
     if (statusIndicator && statusText) {
-      statusIndicator.className = 'ai-status-indicator warning';
-      statusText.textContent = 'عدم برقراری ارتباط با سامانه';
+      statusIndicator.className = 'ai-status-indicator';
+      statusText.textContent = 'سامانه فعال (موتور محلی)';
     }
+    return false;
   }
 }
 
@@ -1283,7 +1312,7 @@ function showChatTyping(show, statusText = 'در حال بررسی و تحلیل
   }
 }
 
-/** ارسال پیام به Backend امن، بازیابی RAG و تولید پاسخ هوش مصنوعی به صورت جریانی (Streaming) */
+/** ارسال پیام به Backend و تولید پاسخ با فال‌بک هوشمند به موتور RAG کلاینت در صورت قطعی شبکه */
 async function handleUserMessageSubmit(text) {
   const cleanText = sanitizeText(text);
   if (!cleanText || appState.isProcessing) return;
@@ -1303,15 +1332,25 @@ async function handleUserMessageSubmit(text) {
   // ۳. ایجاد AbortController جهت امکان انصراف
   appState.activeAbortController = new AbortController();
 
-  // تغییر وضعیت متن تایپینگ بعد از ۳۵۰ میلی‌ثانیه برای حس پویایی سیستم
   const stepTimer = setTimeout(() => {
     showChatTyping(true, 'در حال تنظیم راهنمایی حقوقی...');
   }, 350);
 
   let streamHandler = null;
+  let usedServerSuccessfully = false;
+
+  const caseContextObj = {
+    userName: appState.userName,
+    personType: appState.personType,
+    legalCategory: appState.legalCategory,
+    formAnswers: appState.formAnswers,
+    caseSummary: appState.caseSummary
+  };
 
   try {
-    const res = await fetch('/api/chat', {
+    const chatUrl = getApiUrl('/api/chat');
+
+    const res = await fetch(chatUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1321,109 +1360,96 @@ async function handleUserMessageSubmit(text) {
         sessionId: appState.sessionId,
         message: cleanText,
         stream: true,
-        caseContext: {
-          userName: appState.userName,
-          personType: appState.personType,
-          legalCategory: appState.legalCategory,
-          formAnswers: appState.formAnswers,
-          caseSummary: appState.caseSummary
-        }
+        caseContext: caseContextObj
       }),
       signal: appState.activeAbortController.signal
     });
 
     clearTimeout(stepTimer);
 
-    if (!res.ok) {
-      showChatTyping(false);
-      const errData = await res.json().catch(() => ({}));
-      const errMessage = errData.error || 'خطا در ارتباط با سرور حقوقی';
-      appendChatMessage(
-        'assistant',
-        `⚠️ متأسفانه در پردازش پرسش مشکلی پیش آمد: ${errMessage}\nمی‌توانید دوباره تلاش کنید یا موضوع را به شکل دیگری مطرح نمایید.`,
-        [],
-        [],
-        false,
-        true
-      );
-      return;
-    }
+    if (res.ok) {
+      usedServerSuccessfully = true;
+      appState.isServerReachable = true;
 
-    const contentType = res.headers.get('content-type') || '';
-    if (contentType.includes('text/event-stream') && res.body) {
-      // حالت پاسخ تدریجی (Streaming) برای نمایش آنی به کاربر
-      streamHandler = createStreamingAssistantMessage();
-      showChatTyping(false);
+      const contentType = res.headers.get('content-type') || '';
+      if (contentType.includes('text/event-stream') && res.body) {
+        streamHandler = createStreamingAssistantMessage();
+        showChatTyping(false);
 
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder('utf-8');
-      let buffer = '';
-      let receivedCitations = [];
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder('utf-8');
+        let buffer = '';
+        let receivedCitations = [];
 
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
 
-        buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split('\n\n');
-        buffer = lines.pop() || '';
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n\n');
+          buffer = lines.pop() || '';
 
-        for (const block of lines) {
-          if (!block.trim()) continue;
-          let eventType = 'chunk';
-          let eventDataStr = '';
+          for (const block of lines) {
+            if (!block.trim()) continue;
+            let eventType = 'chunk';
+            let eventDataStr = '';
 
-          const blockLines = block.split('\n');
-          for (const line of blockLines) {
-            if (line.startsWith('event: ')) {
-              eventType = line.replace('event: ', '').trim();
-            } else if (line.startsWith('data: ')) {
-              eventDataStr = line.replace('data: ', '').trim();
+            const blockLines = block.split('\n');
+            for (const line of blockLines) {
+              if (line.startsWith('event: ')) {
+                eventType = line.replace('event: ', '').trim();
+              } else if (line.startsWith('data: ')) {
+                eventDataStr = line.replace('data: ', '').trim();
+              }
             }
-          }
 
-          if (eventType === 'sources') {
-            try {
-              const parsed = JSON.parse(eventDataStr);
-              if (parsed.sources && streamHandler) {
-                streamHandler.setSources(parsed.sources);
+            if (eventType === 'sources') {
+              try {
+                const parsed = JSON.parse(eventDataStr);
+                if (parsed.sources && streamHandler) {
+                  streamHandler.setSources(parsed.sources);
+                }
+              } catch (e) {}
+            } else if (eventType === 'chunk') {
+              try {
+                const parsed = JSON.parse(eventDataStr);
+                if (parsed.text && streamHandler) {
+                  streamHandler.updateChunk(parsed.text);
+                }
+              } catch (e) {}
+            } else if (eventType === 'done') {
+              try {
+                const parsed = JSON.parse(eventDataStr);
+                receivedCitations = parsed.citations || [];
+              } catch (e) {}
+            } else if (eventType === 'error') {
+              try {
+                const parsed = JSON.parse(eventDataStr);
+                throw new Error(parsed.error || 'خطا در تولید پاسخ');
+              } catch (e) {
+                throw e;
               }
-            } catch (e) {}
-          } else if (eventType === 'chunk') {
-            try {
-              const parsed = JSON.parse(eventDataStr);
-              if (parsed.text && streamHandler) {
-                streamHandler.updateChunk(parsed.text);
-              }
-            } catch (e) {}
-          } else if (eventType === 'done') {
-            try {
-              const parsed = JSON.parse(eventDataStr);
-              receivedCitations = parsed.citations || [];
-            } catch (e) {}
-          } else if (eventType === 'error') {
-            try {
-              const parsed = JSON.parse(eventDataStr);
-              throw new Error(parsed.error || 'خطا در تولید پاسخ');
-            } catch (e) {
-              throw e;
             }
           }
         }
-      }
 
-      if (streamHandler) {
-        streamHandler.finish(receivedCitations);
+        if (streamHandler) {
+          streamHandler.finish(receivedCitations);
+        }
+        return;
+      } else {
+        showChatTyping(false);
+        const data = await res.json();
+        appendChatMessage('assistant', data.reply, data.sources || [], data.citations || []);
+        return;
       }
     } else {
-      // حالت معمولی JSON
-      showChatTyping(false);
-      const data = await res.json();
-      appendChatMessage('assistant', data.reply, data.sources || [], data.citations || []);
+      // سرور خطای مشخص (مثل 400 یا 429) برگردانده
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.error || `خطای سرور: کد وضعیت ${res.status}`);
     }
   } catch (err) {
     clearTimeout(stepTimer);
-    showChatTyping(false);
 
     if (streamHandler && !streamHandler.getText()) {
       streamHandler.remove();
@@ -1431,16 +1457,38 @@ async function handleUserMessageSubmit(text) {
     }
 
     if (err.name === 'AbortError') {
+      showChatTyping(false);
       appendChatMessage('assistant', 'درخواست پردازش حقوقی توسط شما لغو شد.', [], [], false, false);
-    } else {
-      appendChatMessage(
-        'assistant',
-        `⚠️ ${err.message || 'خطای ارتباط با سرور یا قطعی اینترنت رخ داد. لطفاً اتصال خود را بررسی کرده و مجدداً تلاش نمایید.'}`,
-        [],
-        [],
-        false,
-        true
-      );
+      return;
+    }
+
+    // در صورتی که اتصال به سرور شکست خورده باشد (مثلاً در نسخه گیت‌هاب پیجز بدون بک‌اند خارجی)،
+    // از موتور هوشمند محلی RAG مستقر در کلاینت برای تحلیل حقوقی دقیق و پاسخگویی استفاده می‌شود.
+    if (!usedServerSuccessfully) {
+      try {
+        showChatTyping(true, 'در حال استخراج مواد قانونی از پایگاه محلی...');
+        await new Promise((r) => setTimeout(r, 400));
+        showChatTyping(false);
+
+        const localResult = generateLocalLegalAdvice(cleanText, caseContextObj);
+        appendChatMessage(
+          'assistant',
+          localResult.reply,
+          localResult.sources,
+          localResult.citations
+        );
+        return;
+      } catch (fallbackErr) {
+        showChatTyping(false);
+        appendChatMessage(
+          'assistant',
+          `⚠️ خطا در برقراری اتصال به سرور و اجرای تحلیل محلی: ${err.message || 'لطفاً ارتباط شبکه را بررسی نمایید.'}`,
+          [],
+          [],
+          false,
+          true
+        );
+      }
     }
   } finally {
     appState.isProcessing = false;
@@ -1599,13 +1647,25 @@ async function openLegalSourcesModal() {
   modal.style.display = 'flex';
 
   try {
-    const res = await fetch('/api/sources');
-    if (!res.ok) throw new Error('خطا در دریافت لیست منابع');
-    const data = await res.json();
+    const sourcesUrl = getApiUrl('/api/sources');
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 3500);
+
+    const res = await fetch(sourcesUrl, { signal: controller.signal });
+    clearTimeout(timer);
+
+    let sourcesList = [];
+
+    if (res.ok) {
+      const data = await res.json();
+      sourcesList = data.sources || [];
+    } else {
+      sourcesList = getLocalArticlesCatalog();
+    }
 
     container.innerHTML = '';
 
-    data.sources.forEach((s) => {
+    sourcesList.forEach((s) => {
       const card = document.createElement('div');
       card.style.background = 'rgba(13, 17, 34, 0.6)';
       card.style.border = '1px solid var(--border-subtle)';
@@ -1634,7 +1694,38 @@ async function openLegalSourcesModal() {
       container.appendChild(card);
     });
   } catch (err) {
-    container.innerHTML = '<div style="color: var(--color-error); text-align: center; padding: 16px;">خطا در دریافت فهرست منابع از سرور.</div>';
+    // در صورت عدم پاسخگویی سرور، از پایگاه قوانین محلی کلاینت نمایش داده شود
+    const localSources = getLocalArticlesCatalog();
+    container.innerHTML = '';
+
+    localSources.forEach((s) => {
+      const card = document.createElement('div');
+      card.style.background = 'rgba(13, 17, 34, 0.6)';
+      card.style.border = '1px solid var(--border-subtle)';
+      card.style.borderRadius = 'var(--radius-sm)';
+      card.style.padding = '12px 14px';
+      card.style.display = 'flex';
+      card.style.flexDirection = 'column';
+      card.style.gap = '6px';
+
+      card.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <strong style="color: #ffffff; font-size: 0.92rem;">⚖️ ${s.articleNumber}: ${s.title}</strong>
+          <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 99px; background: rgba(16, 185, 129, 0.15); color: var(--color-success);">
+            ${s.validityStatus}
+          </span>
+        </div>
+        <div style="font-size: 0.82rem; color: var(--text-secondary);">${s.lawTitle}</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.74rem; color: var(--text-muted); border-top: 1px dashed rgba(255,255,255,0.06); padding-top: 6px; margin-top: 4px;">
+          <span>دسته‌بندی: ${s.category} · آخرین بررسی: ${s.lastVerifiedDate}</span>
+          <a href="${s.officialUrl}" target="_blank" rel="noopener noreferrer" style="color: var(--color-purple-light); text-decoration: none; font-weight: 600;">
+            مشاهده در سامانه ملی قوانین ↗
+          </a>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
   }
 }
 
@@ -1727,12 +1818,81 @@ function setupModals() {
     headerResetBtn.addEventListener('click', openResetModal);
   }
 
+  // مدال تنظیمات سرور
+  const btnOpenServerConfig = document.getElementById('btn-open-server-config');
+  const modalServerConfig = document.getElementById('modal-server-config');
+  const btnCloseServerConfig = document.getElementById('btn-close-server-config');
+  const btnCancelServerConfig = document.getElementById('btn-cancel-server-config');
+  const btnSaveServerConfig = document.getElementById('btn-save-server-config');
+  const inputCustomBackendUrl = document.getElementById('input-custom-backend-url');
+  const serverStatusBox = document.getElementById('server-status-box');
+
+  function openServerConfigModal() {
+    if (!modalServerConfig) return;
+    if (inputCustomBackendUrl) {
+      inputCustomBackendUrl.value = appState.customBackendUrl || '';
+    }
+    updateServerStatusBox();
+    modalServerConfig.style.display = 'flex';
+  }
+
+  function closeServerConfigModal() {
+    if (modalServerConfig) modalServerConfig.style.display = 'none';
+  }
+
+  function updateServerStatusBox() {
+    if (!serverStatusBox) return;
+    const currentUrl = appState.customBackendUrl || (window.location.origin);
+    if (appState.isServerReachable) {
+      serverStatusBox.style.background = 'rgba(16, 185, 129, 0.1)';
+      serverStatusBox.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+      serverStatusBox.style.color = '#34d399';
+      serverStatusBox.textContent = `وضعیت اتصال: متصل به سرور ابری (${currentUrl})`;
+    } else {
+      serverStatusBox.style.background = 'rgba(245, 158, 11, 0.1)';
+      serverStatusBox.style.borderColor = 'rgba(245, 158, 11, 0.3)';
+      serverStatusBox.style.color = '#fbbf24';
+      serverStatusBox.textContent = `وضعیت اتصال: فعال در حالت محلی / آفلاین (موتور RAG کلاینت)`;
+    }
+  }
+
+  if (btnOpenServerConfig) {
+    btnOpenServerConfig.addEventListener('click', openServerConfigModal);
+  }
+  if (btnCloseServerConfig) {
+    btnCloseServerConfig.addEventListener('click', closeServerConfigModal);
+  }
+  if (btnCancelServerConfig) {
+    btnCancelServerConfig.addEventListener('click', closeServerConfigModal);
+  }
+
+  if (btnSaveServerConfig && inputCustomBackendUrl) {
+    btnSaveServerConfig.addEventListener('click', async () => {
+      const rawVal = inputCustomBackendUrl.value.trim().replace(/\/+$/, '');
+      appState.customBackendUrl = rawVal;
+      try {
+        localStorage.setItem(BACKEND_STORAGE_KEY, rawVal);
+      } catch (e) {}
+
+      if (serverStatusBox) {
+        serverStatusBox.textContent = 'در حال تست اتصال به آدرس مشخص‌شده...';
+      }
+
+      await checkBackendHealth();
+      updateServerStatusBox();
+      setTimeout(() => {
+        closeServerConfigModal();
+      }, 700);
+    });
+  }
+
   // کلید Escape
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeSummaryModal();
       closeResetModal();
       closeLegalSourcesModal();
+      closeServerConfigModal();
     }
   });
 
@@ -1755,6 +1915,12 @@ function setupModals() {
   if (modalReset) {
     modalReset.addEventListener('click', (e) => {
       if (e.target === modalReset) closeResetModal();
+    });
+  }
+
+  if (modalServerConfig) {
+    modalServerConfig.addEventListener('click', (e) => {
+      if (e.target === modalServerConfig) closeServerConfigModal();
     });
   }
 }

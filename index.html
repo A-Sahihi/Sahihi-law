@@ -562,6 +562,13 @@
                 </svg>
                 <span>خلاصه پرونده</span>
               </button>
+              <button type="button" class="btn-chat-tool" id="btn-open-server-config" title="تنظیمات اتصال به سرور">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+                <span>تنظیمات سرور</span>
+              </button>
               <button type="button" class="btn-chat-tool" id="btn-chat-restart" title="شروع گفت‌وگوی جدید">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
@@ -719,6 +726,56 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" id="btn-close-modal-sources-action">بستن</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 4: پیکربندی و اتصال به سرور بک‌اند (برای GitHub Pages و محیط‌های مختلف) -->
+    <div class="modal-backdrop" id="modal-server-config" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modal-server-title">
+      <div class="modal-dialog" style="max-width: 600px;">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
+            <h3 class="modal-title" id="modal-server-title">تنظیمات اتصال سرور دستیار حقوقی</h3>
+          </div>
+          <button type="button" class="modal-close-btn" id="btn-close-server-config" aria-label="بستن">
+            ✕
+          </button>
+        </div>
+        <div class="modal-body">
+          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 14px; line-height: 1.7;">
+            سامانه «صحیحی» برای پاسخ‌دهی به پرسش‌های حقوقی به دو صورت عمل می‌کند:
+          </p>
+          <ul style="font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 16px; padding-right: 20px; line-height: 1.8;">
+            <li><strong>سرور بک‌اند ابری (Cloud / Express API):</strong> ارتباط با مدل پیشرفته Gemini همراه با RAG.</li>
+            <li><strong>موتور هوشمند محلی (مستقر در مرورگر / آفلاین):</strong> در صورتی که سرور در دسترس نباشد یا سایت روی GitHub Pages به عنوان هاست استاتیک میزبانی شود، تحلیل حقوقی و استخراج مواد قانونی به صورت خودکار و بدون وقفه از طریق پایگاه قوانین مرورگر انجام می‌پذیرد.</li>
+          </ul>
+
+          <div style="background: rgba(13, 17, 34, 0.7); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 16px;">
+            <label for="input-custom-backend-url" style="display: block; font-weight: 600; font-size: 0.88rem; margin-bottom: 6px; color: #fff;">
+              آدرس سرور بک‌اند اختصاصی (اختیاری):
+            </label>
+            <input
+              type="url"
+              id="input-custom-backend-url"
+              placeholder="مثال: https://my-legal-api.run.app یا خالی برای حالت خودکار"
+              style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: var(--radius-xs); color: #fff; font-size: 0.86rem; direction: ltr;"
+            />
+            <span style="display: block; font-size: 0.76rem; color: var(--text-muted); margin-top: 6px;">
+              اگر سرور بک‌اند خود را روی سرویس‌هایی مانند Cloud Run، Render، Fly.io یا سرور شخصی مستقر کرده‌اید، آدرس آن را اینجا وارد کنید.
+            </span>
+          </div>
+
+          <div id="server-status-box" style="padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.84rem; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.25); color: #93c5fd;">
+            وضعیت فعلی: در حال بررسی...
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-server-config">بستن</button>
+          <button type="button" class="btn btn-primary" id="btn-save-server-config">ذخیره و تست اتصال</button>
         </div>
       </div>
     </div>
