@@ -67,7 +67,7 @@
   --border-input: #3A3F43;
 
   /* متغیرهای تصویر پس‌زمینه سربرگ (ترازوی عدالت طلایی بر روی پله‌های زغالی) */
-  --hero-image-url: url('/hero-justice-bg.svg');
+  --hero-image-url: url('./hero-justice-bg.svg');
   --hero-image-zoom: cover;
   --hero-image-position-x: center;
   --hero-image-position-y: 35%;
