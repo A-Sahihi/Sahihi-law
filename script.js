@@ -1230,17 +1230,17 @@ async function checkBackendHealth() {
       if (statusIndicator && statusText) {
         if (data.hasApiKey) {
           statusIndicator.className = 'ai-status-indicator';
-          statusText.textContent = 'هوش مصنوعی و RAG فعال';
+          statusText.textContent = 'سامانه فعال';
         } else {
           statusIndicator.className = 'ai-status-indicator warning';
-          statusText.textContent = 'آماده‌باش (کلید GEMINI_API_KEY در تنظیمات)';
+          statusText.textContent = 'در حال اتصال...';
         }
       }
     }
   } catch (e) {
     if (statusIndicator && statusText) {
       statusIndicator.className = 'ai-status-indicator warning';
-      statusText.textContent = 'عدم ارتباط با سرور محلی';
+      statusText.textContent = 'عدم برقراری ارتباط با سامانه';
     }
   }
 }
@@ -1267,7 +1267,7 @@ function initChatInterface() {
   }
 }
 
-function showChatTyping(show, statusText = 'در حال جست‌وجو در قوانین و اعتبارسنجی پاسخ...') {
+function showChatTyping(show, statusText = 'در حال بررسی و تحلیل حقوقی...') {
   const typingRow = document.getElementById('chat-typing-row');
   const textEl = document.getElementById('chat-typing-status-text');
   const scrollArea = document.getElementById('chat-scroll-area');
@@ -1298,14 +1298,14 @@ async function handleUserMessageSubmit(text) {
   if (sendBtn) sendBtn.disabled = true;
   if (textarea) textarea.disabled = true;
 
-  showChatTyping(true, 'در حال بازیابی قوانین و مستندات مرتبط از پایگاه اسناد...');
+  showChatTyping(true, 'در حال بررسی مستندات قانونی...');
 
   // ۳. ایجاد AbortController جهت امکان انصراف
   appState.activeAbortController = new AbortController();
 
   // تغییر وضعیت متن تایپینگ بعد از ۳۵۰ میلی‌ثانیه برای حس پویایی سیستم
   const stepTimer = setTimeout(() => {
-    showChatTyping(true, 'در حال تحلیل حقوقی و اعتبارسنجی ارجاعات قانونی...');
+    showChatTyping(true, 'در حال تنظیم راهنمایی حقوقی...');
   }, 350);
 
   let streamHandler = null;

@@ -73,7 +73,7 @@ export function parseGeminiError(error: any): string {
     status === 401 ||
     status === 403
   ) {
-    return 'خطای احراز هویت: کلید دسترسی Gemini نامعتبر است یا منقضی شده است. لطفاً مقدار GEMINI_API_KEY را در تنظیمات بررسی فرمایید.';
+    return 'ارتباط با سامانه هوشمند در حال حاضر برقرار نیست. لطفاً دقایقی دیگر مجدداً تلاش فرمایید.';
   }
 
   if (
@@ -82,7 +82,7 @@ export function parseGeminiError(error: any): string {
     msg.includes('NOT_FOUND') ||
     status === 404
   ) {
-    return 'خطای شناسه مدل: مدل انتخاب‌شده در نسخه API فعلی پشتیبانی نمی‌شود. مدل استاندارد پرسرعت جایگزین گردید.';
+    return 'در پردازش هوشمند خطایی رخ داد. لطفاً پرسش خود را دوباره ارسال فرمایید.';
   }
 
   if (
@@ -90,7 +90,7 @@ export function parseGeminiError(error: any): string {
     msg.includes('quota') ||
     status === 429
   ) {
-    return 'محدودیت سقف درخواست (Quota): سقف مجاز فراخوانی مدل برای این بازه زمانی تکمیل شده است. لطفاً لحظاتی دیگر مجدداً تلاش فرمایید.';
+    return 'سامانه در حال حاضر با حجم بالای مراجعات روبرو است. لطفاً چند لحظه بعد مجدداً امتحان فرمایید.';
   }
 
   if (
@@ -99,7 +99,7 @@ export function parseGeminiError(error: any): string {
     msg.includes('high demand') ||
     status === 503
   ) {
-    return 'ترافیک بالای موقت مدل: سرورهای پردازش با ترافیک موقت روبرو شدند. مدل سبک‌تر پشتیبان فعال گردید.';
+    return 'سامانه به دلیل ترافیک بالا با تأخیر موقت مواجه شد. لطفاً چند لحظه بعد مجدداً امتحان فرمایید.';
   }
 
   if (
@@ -108,11 +108,10 @@ export function parseGeminiError(error: any): string {
     msg.includes('ETIMEDOUT') ||
     msg.includes('ENOTFOUND')
   ) {
-    return 'خطای شبکه و اختلال اتصال: برقراری ارتباط با سرورهای هوش مصنوعی با خطا مواجه شد. لطفاً اتصال اینترنت سرور را بررسی نمایید.';
+    return 'اختلال در اتصال به شبکه رخ داد. لطفاً اتصال اینترنت خود را بررسی نموده و مجدداً تلاش فرمایید.';
   }
 
-  const safeMsg = sanitizeErrorMessage(msg);
-  return `خطا در پردازش هوش مصنوعی: ${safeMsg || 'خطای ناشناخته در سرویس مدل حقوقی'}`;
+  return 'در پردازش درخواست حقوقی مشکلی پیش آمد. لطفاً چند لحظه دیگر دوباره تلاش نمایید.';
 }
 
 /** ساخت پرامپت سیستمی تخصصی بر اساس قوانین جمهوری اسلامی ایران و زمینه پرونده */
@@ -225,10 +224,7 @@ export async function generateLegalResponse(
 ): Promise<string> {
   const currentApiKey = process.env.GEMINI_API_KEY;
   if (!currentApiKey) {
-    return `کاربر گرامی، کلید ارتباط با هوش مصنوعی (GEMINI_API_KEY) در متغیرهای محیطی برنامه یافت نشد.
-لطفاً از بخش Settings > Secrets در پنل هوش مصنوعی، کلید دسترسی معتبر را متصل فرمایید تا سامانه بتواند پاسخ‌های هوشمند و مستند را ارائه دهد.
-
-در حال حاضر منابع بازیابی‌شده مرتبط با پرونده شما در تب منابع قابل مشاهده هستند.`;
+    return `کاربر گرامی، ارتباط با سرویس هوشمند موقتاً برقرار نیست. در حال حاضر می‌توانید مواد و مستندات قانونی استخراج‌شده مرتبط با پرونده را در بخش منابع مشاهده فرمایید.`;
   }
 
   const primaryModel = resolveGeminiModelName();
@@ -286,7 +282,7 @@ export async function* generateLegalResponseStream(
 ): AsyncGenerator<string, void, unknown> {
   const currentApiKey = process.env.GEMINI_API_KEY;
   if (!currentApiKey) {
-    yield `کاربر گرامی، کلید ارتباط با هوش مصنوعی (GEMINI_API_KEY) یافت نشد. لطفاً در بخش تنظیمات کلید را ثبت فرمایید.`;
+    yield `کاربر گرامی، ارتباط با سرویس هوشمند موقتاً برقرار نیست. لطفاً دقایقی دیگر مجدداً تلاش فرمایید.`;
     return;
   }
 

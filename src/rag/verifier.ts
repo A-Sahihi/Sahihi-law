@@ -76,9 +76,9 @@ export function verifyCitations(
           lawTitle: 'منبع نامشخص در پایگاه رسمی',
           articleNumber: cleanMatch,
           status: 'unverified',
-          statusLabel: 'تأییدنشده (شماره ماده در پایگاه رسمی قوانین پروژه یافت نشد)',
+          statusLabel: 'نیاز به بررسی و استعلام تکمیلی',
           officialUrl: 'https://qavanin.ir',
-          excerpt: `شماره «${cleanMatch}» در متن پاسخ ذکر شده است ولی متن رسمی متناظر با آن در سامانه قوانین پروژه یافت نشد و به عنوان ارجاع تأییدنشده ثبت گردید.`
+          excerpt: `مستند قانونی متناظر با «${cleanMatch}» نیاز به بررسی و استعلام تکمیلی در مراجع رسمی یا روزنامه رسمی دارد.`
         });
       }
     }

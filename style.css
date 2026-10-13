@@ -200,9 +200,10 @@ body {
   background: linear-gradient(135deg, #ffffff 40%, #c084fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  padding: 2px 6px;
+  padding: 4px 6px 2px;
   overflow: visible;
   display: inline-block;
+  transform: translateY(3px);
 }
 
 /* نشانگر تایپ تدریجی پاسخ استریم */
@@ -1333,10 +1334,11 @@ body {
   background: linear-gradient(135deg, #ffffff 30%, #c084fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  padding: 2px 6px;
+  padding: 3px 6px 1px;
   letter-spacing: 0 !important;
   overflow: visible;
   display: inline-block;
+  transform: translateY(2px);
 }
 
 .chat-sub-title {
@@ -1850,12 +1852,14 @@ body {
     font-size: 1.45rem;
     line-height: 1.35;
     letter-spacing: 0 !important;
+    transform: translateY(2px);
   }
 
   .chat-brand-title.brand-nastaliq {
     font-size: 1.4rem;
     line-height: 1.35;
     letter-spacing: 0 !important;
+    transform: translateY(1px);
   }
 
   .welcome-title {
