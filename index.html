@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>صحیحی | دستیار حقوقی هوشمند ایران</title>
+    <meta
+      name="description"
+      content="صحیحی - سامانه راهنمایی حقوقی اولیه و هدایت قانونی بر اساس قوانین جمهوری اسلامی ایران"
+    />
+    <meta property="og:title" content="صحیحی | دستیار حقوقی هوشمند ایران" />
+    <meta
+      property="og:description"
+      content="صحیحی - سامانه راهنمایی حقوقی اولیه و هدایت قانونی بر اساس قوانین جمهوری اسلامی ایران"
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gulzar&family=Noto+Nastaliq+Urdu:wght@500;700&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Top Persistent Application Bar -->
+    <header class="app-header" id="app-header">
+      <div class="header-container">
+        <div class="header-brand">
+          <div class="brand-emblem" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 3v18M6 8l6-3 6 3M3 14l3-6 3 6M15 14l3-6 3 6M3 14a3 3 0 0 0 6 0M15 14a3 3 0 0 0 6 0" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name brand-nastaliq">صحیحی</span>
+            <span class="brand-sub">دستیار حقوقی هوشمند ایران</span>
+          </div>
+        </div>
+
+        <!-- Animated User Badge (Shown after step 1) -->
+        <div class="header-user-badge" id="header-user-badge" style="display: none;">
+          <span class="user-badge-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </span>
+          <span class="user-badge-label">کاربر:</span>
+          <strong class="user-badge-name" id="header-user-name"></strong>
+        </div>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+          <button
+            type="button"
+            class="header-btn"
+            id="btn-header-reset"
+            style="display: none;"
+            title="شروع مجدد فرایند"
+          >
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+              <path d="M3 3v5h5" />
+            </svg>
+            <span>شروع مجدد</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Steps Progress Tracker (Steps 1 to 5) -->
+      <nav class="steps-progress-wrapper" id="steps-progress-wrapper" aria-label="مراحل فرایند">
+        <div class="steps-progress-bar">
+          <div class="progress-track" id="progress-track"></div>
+          
+          <div class="step-node active" data-step="1">
+            <div class="step-circle">۱</div>
+            <span class="step-title">هویت</span>
+          </div>
+          <div class="step-node" data-step="2">
+            <div class="step-circle">۲</div>
+            <span class="step-title">نوع شخصیت</span>
+          </div>
+          <div class="step-node" data-step="3">
+            <div class="step-circle">۳</div>
+            <span class="step-title">موضوع حقوقی</span>
+          </div>
+          <div class="step-node" data-step="4">
+            <div class="step-circle">۴</div>
+            <span class="step-title">جزئیات پرونده</span>
+          </div>
+          <div class="step-node" data-step="5">
+            <div class="step-circle">۵</div>
+            <span class="step-title">مرور و تأیید</span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content App Container -->
+    <main class="main-wrapper" id="main-wrapper">
+      
+      <!-- ======================================================== -->
+      <!-- STEP 1: خوشامدگویی و دریافت نام -->
+      <!-- ======================================================== -->
+      <section class="step-section active" id="step-1" aria-labelledby="step1-title">
+        <div class="welcome-container">
+          <div class="welcome-hero-card">
+            <div class="hero-glow-effect" aria-hidden="true"></div>
+            
+            <div class="hero-brand-block">
+              <div class="hero-brand-calligraphy brand-nastaliq" aria-label="صحیحی">صحیحی</div>
+              <div class="hero-brand-subtitle">سامانه دستیار حقوقی هوشمند ایران</div>
+            </div>
+
+            <div class="hero-badge">
+              <span>هدایت قانونی و تحلیل هوشمند پرونده</span>
+            </div>
+
+            <h1 class="welcome-title" id="step1-title">تحلیل و راهنمایی اولیه بر اساس قوانین رسمی</h1>
+            <p class="welcome-description">
+              مشخصات مسئله خود را تعیین فرمایید تا راهکارهای قانونی، مستندات رسمی و مراجع صالح مربوطه را دریافت نمایید.
+            </p>
+
+            <div class="welcome-form-card">
+              <label for="input-user-name" class="form-label">
+                <span>نام یا عنوان شما:</span>
+                <span class="label-required">*</span>
+              </label>
+              
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="input-user-name"
+                  class="text-input"
+                  placeholder="مثلاً: احمد رضایی یا شرکت آروین"
+                  maxlength="60"
+                  autocomplete="name"
+                  aria-required="true"
+                />
+              </div>
+              <div class="input-error-msg" id="step1-name-error" style="display: none;" role="alert"></div>
+
+              <button type="button" class="btn btn-primary btn-large" id="btn-start-flow">
+                <span>شروع راهنمایی</span>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+              </button>
+            </div>
+
+            <div class="welcome-features-strip">
+              <div class="feature-item">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                <span>حفظ محرمانگی و تفکیک نشست کاربران</span>
+              </div>
+              <div class="feature-item">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10 9 9 9 8 9" />
+                </svg>
+                <span>مستند به قوانین رسمی جمهوری اسلامی ایران</span>
+              </div>
+              <div class="feature-item">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                <span>دسترسی مستقیم بدون ثبت‌نام پیچیده</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- STEP 2: تعیین نوع شخصیت (حقیقی / حقوقی) -->
+      <!-- ======================================================== -->
+      <section class="step-section" id="step-2" aria-labelledby="step2-title" style="display: none;">
+        <div class="section-container">
+          <div class="section-header">
+            <h2 class="section-title" id="step2-title">برای شروع، کدام گزینه درباره شما صدق می‌کند؟</h2>
+            <p class="section-subtitle">
+              نوع شخصیت حقوقی تعیین‌کننده قوانین حاکم، صلاحیت مراجع قضایی و نحوه طرح دعوا است.
+            </p>
+          </div>
+
+          <div class="person-type-grid" role="radiogroup" aria-label="انتخاب نوع شخصیت">
+            <!-- شخص حقیقی -->
+            <div
+              class="selection-card"
+              id="card-person-individual"
+              data-value="حقیقی"
+              role="radio"
+              aria-checked="false"
+              tabindex="0"
+            >
+              <div class="card-radio-mark" aria-hidden="true"></div>
+              <div class="card-icon-box">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </div>
+              <div class="card-content">
+                <h3 class="card-title">شخص حقیقی</h3>
+                <p class="card-description">برای مسائل حقوقی شخصی و امور مربوط به افراد</p>
+                <div class="card-scope-list">
+                  <span>امور خانواده و ارث</span>
+                  <span>·</span>
+                  <span>قراردادهای فردی</span>
+                  <span>·</span>
+                  <span>روابط کارگر و کارفرما</span>
+                  <span>·</span>
+                  <span>مسائل ملکی شخصی</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- شخص حقوقی -->
+            <div
+              class="selection-card"
+              id="card-person-legal"
+              data-value="حقوقی"
+              role="radio"
+              aria-checked="false"
+              tabindex="0"
+            >
+              <div class="card-radio-mark" aria-hidden="true"></div>
+              <div class="card-icon-box">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+                  <line x1="9" y1="22" x2="9" y2="22.01" />
+                  <line x1="15" y1="22" x2="15" y2="22.01" />
+                  <line x1="9" y1="18" x2="9" y2="18.01" />
+                  <line x1="15" y1="18" x2="15" y2="18.01" />
+                  <line x1="9" y1="14" x2="9" y2="14.01" />
+                  <line x1="15" y1="14" x2="15" y2="14.01" />
+                  <line x1="9" y1="10" x2="9" y2="10.01" />
+                  <line x1="15" y1="10" x2="15" y2="10.01" />
+                  <line x1="9" y1="6" x2="9" y2="6.01" />
+                  <line x1="15" y1="6" x2="15" y2="6.01" />
+                </svg>
+              </div>
+              <div class="card-content">
+                <h3 class="card-title">شخص حقوقی</h3>
+                <p class="card-description">برای مسائل حقوقی شرکت‌ها، مؤسسات و کسب‌وکارها</p>
+                <div class="card-scope-list">
+                  <span>امور ثبت شرکت‌ها</span>
+                  <span>·</span>
+                  <span>دعاوی تجاری</span>
+                  <span>·</span>
+                  <span>مالیات و بیمه شرکتی</span>
+                  <span>·</span>
+                  <span>قراردادهای پیمانکاری</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-nav-bar">
+            <button type="button" class="btn btn-secondary" id="btn-back-to-step1">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+              <span>بازگشت</span>
+            </button>
+            <button type="button" class="btn btn-primary" id="btn-to-step3" disabled>
+              <span>ادامه</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- STEP 3: انتخاب موضوع حقوقی -->
+      <!-- ======================================================== -->
+      <section class="step-section" id="step-3" aria-labelledby="step3-title" style="display: none;">
+        <div class="section-container">
+          <div class="section-header">
+            <h2 class="section-title" id="step3-title">موضوع حقوقی خود را انتخاب کنید</h2>
+            <p class="section-subtitle">
+              دسته‌ای را انتخاب نمایید که بیشترین ارتباط را با موضوع مورد نظر شما دارد:
+            </p>
+          </div>
+
+          <!-- Quick category search filter -->
+          <div class="category-search-bar">
+            <div class="search-input-wrapper">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              <input
+                type="text"
+                id="category-search-input"
+                class="category-search-input"
+                placeholder="جست‌وجوی موضوع (مثلاً: چک، تخلیه، ارث، شرکت، قرارداد...)"
+                aria-label="جست‌وجوی موضوع حقوقی"
+              />
+            </div>
+            <span class="category-count-badge" id="category-count-badge">۱۲ موضوع فعال</span>
+          </div>
+
+          <!-- 12 Categories Grid -->
+          <div class="categories-grid" id="categories-grid" role="radiogroup" aria-label="فهرست موضوعات حقوقی">
+            <!-- Cards rendered via JS / fallback in HTML -->
+          </div>
+
+          <div class="step-nav-bar">
+            <button type="button" class="btn btn-secondary" id="btn-back-to-step2">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+              <span>بازگشت به انتخاب شخصیت</span>
+            </button>
+            <button type="button" class="btn btn-primary" id="btn-to-step4" disabled>
+              <span>ادامه به ثبت جزئیات</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- STEP 4: فرم پویای دریافت جزئیات -->
+      <!-- ======================================================== -->
+      <section class="step-section" id="step-4" aria-labelledby="step4-title" style="display: none;">
+        <div class="section-container">
+          <div class="section-header">
+            <div class="active-category-pill" id="step4-category-badge"></div>
+            <h2 class="section-title" id="step4-title">جزئیات مسئله حقوقی</h2>
+            <p class="section-subtitle">
+              پاسخ به گزینه‌های زیر کمک می‌کند تا ابعاد قانونی مسئله با دقت بیشتری تحلیل شود.
+            </p>
+          </div>
+
+          <!-- Dynamic Form Container -->
+          <form class="dynamic-form-card" id="details-form" novalidate>
+            <div class="form-fields-container" id="dynamic-fields-wrapper">
+              <!-- Dynamically populated based on chosen legal category -->
+            </div>
+
+            <!-- Validation Error Banner -->
+            <div class="form-error-banner" id="step4-error-banner" style="display: none;" role="alert">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              <span id="step4-error-text">لطفاً فیلدهای ضروری را تکمیل فرمایید.</span>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="step-nav-bar form-nav-bar">
+              <button type="button" class="btn btn-secondary" id="btn-back-to-step3">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+                <span>بازگشت به انتخاب موضوع</span>
+              </button>
+              <button type="submit" class="btn btn-primary" id="btn-to-step5">
+                <span>بررسی و تأیید اطلاعات</span>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- STEP 5: مرور و تأیید اطلاعات -->
+      <!-- ======================================================== -->
+      <section class="step-section" id="step-5" aria-labelledby="step5-title" style="display: none;">
+        <div class="section-container">
+          <div class="section-header">
+            <h2 class="section-title" id="step5-title">اطلاعات خود را بررسی کنید</h2>
+            <p class="section-subtitle">
+              لطفاً خلاصه اطلاعات ثبت‌شده را مرور کرده و در صورت تأیید، وارد محیط گفت‌وگو شوید.
+            </p>
+          </div>
+
+          <!-- Summary Sheet Card -->
+          <div class="summary-sheet-card">
+            <!-- Summary Head Info -->
+            <div class="summary-header-grid">
+              <div class="summary-meta-item">
+                <span class="meta-label">نام متقاضی:</span>
+                <strong class="meta-value" id="summary-user-name">-</strong>
+              </div>
+              <div class="summary-meta-item">
+                <span class="meta-label">نوع شخصیت:</span>
+                <strong class="meta-value" id="summary-person-type">-</strong>
+              </div>
+              <div class="summary-meta-item">
+                <span class="meta-label">موضوع حقوقی:</span>
+                <strong class="meta-value highlight-category" id="summary-legal-category">-</strong>
+              </div>
+            </div>
+
+            <hr class="summary-divider" />
+
+            <!-- Detailed Answers Grid -->
+            <div class="summary-details-section">
+              <h3 class="summary-subheading">پاسخ‌های ثبت‌شده درباره جزئیات مسئله:</h3>
+              <div class="summary-answers-grid" id="summary-answers-container">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Optional Summary Description -->
+            <div class="summary-desc-box" id="summary-desc-box" style="display: none;">
+              <h4 class="summary-desc-title">شرح مختصر مسئله:</h4>
+              <p class="summary-desc-content" id="summary-desc-text"></p>
+            </div>
+
+            <!-- Legal Disclaimer Callout -->
+            <div class="legal-disclaimer-box" role="note">
+              <div class="disclaimer-icon-box" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+              </div>
+              <div class="disclaimer-text">
+                <strong>تذکر مهم و سلب مسئولیت حقوقی:</strong>
+                <p>
+                  این سامانه برای ارائه اطلاعات عمومی و راهنمایی اولیه طراحی شده است و جایگزین مشاوره تخصصی وکیل دادگستری نیست. تشخیص حقوقی هر پرونده به جزئیات آن و قوانین لازم‌الاجرای مرتبط بستگی دارد.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="step-nav-bar">
+            <button type="button" class="btn btn-secondary" id="btn-edit-details">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+              </svg>
+              <span>ویرایش اطلاعات</span>
+            </button>
+            <button type="button" class="btn btn-primary btn-glow" id="btn-confirm-to-chat">
+              <span>تأیید و ورود به گفت‌وگو</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- STEP 6: رابط گفت‌وگوی اختصاصی و هوشمند -->
+      <!-- ======================================================== -->
+      <section class="step-section chat-section-fullscreen" id="step-6" aria-label="رابط گفت‌وگوی هوشمند" style="display: none;">
+        <div class="chat-wrapper">
+          <!-- Chat Fixed Top Toolbar -->
+          <div class="chat-header-bar">
+            <div class="chat-header-info">
+              <div class="chat-avatar-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 3v18M6 8l6-3 6 3M3 14l3-6 3 6M15 14l3-6 3 6M3 14a3 3 0 0 0 6 0M15 14a3 3 0 0 0 6 0" />
+                </svg>
+              </div>
+              <div class="chat-titles">
+                <div class="chat-main-title">
+                  <span class="chat-brand-title brand-nastaliq">صحیحی</span>
+                  <span class="chat-sub-title">دستیار حقوقی هوشمند ایران</span>
+                  <span class="chat-phase-tag">متصل به RAG</span>
+                  <span class="ai-status-indicator" id="chat-ai-status">
+                    <span class="ai-status-dot"></span>
+                    <span id="chat-ai-status-text">هوش مصنوعی فعال</span>
+                  </span>
+                </div>
+                <div class="chat-meta-bar">
+                  <span class="chat-meta-item">
+                    کاربر: <strong id="chat-header-username">-</strong>
+                  </span>
+                  <span class="chat-meta-separator">·</span>
+                  <span class="chat-meta-item">
+                    موضوع: <strong id="chat-header-category">-</strong>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-header-controls">
+              <button type="button" class="btn-chat-tool" id="btn-open-legal-sources" title="مشاهده پایگاه قوانین معتبر">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+                <span>بانک قوانین ایران</span>
+              </button>
+              <button type="button" class="btn-chat-tool" id="btn-open-case-summary" title="مشاهده اطلاعات ثبت‌شده">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+                <span>خلاصه پرونده</span>
+              </button>
+              <button type="button" class="btn-chat-tool" id="btn-chat-restart" title="شروع گفت‌وگوی جدید">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                  <path d="M3 3v5h5" />
+                </svg>
+                <span>گفت‌وگوی جدید</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Chat Conversation Scroll Area -->
+          <div class="chat-scroll-area" id="chat-scroll-area">
+            <div class="chat-messages-container" id="chat-messages-container" role="log" aria-live="polite">
+              <!-- Messages will be appended here dynamically -->
+            </div>
+
+            <!-- Typing indicator with dynamic step status & abort option -->
+            <div class="chat-typing-row" id="chat-typing-row" style="display: none;" aria-hidden="true">
+              <div class="chat-avatar-icon typing-avatar">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 3v18M6 8l6-3 6 3M3 14l3-6 3 6M15 14l3-6 3 6" />
+                </svg>
+              </div>
+              <div class="typing-bubble">
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-text" id="chat-typing-status-text">در حال جست‌وجو در قوانین و اعتبارسنجی پاسخ...</span>
+                <button type="button" class="btn-abort-request" id="btn-abort-chat-request">انصراف</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Suggested Starter Prompts -->
+          <div class="chat-quick-prompts" id="chat-quick-prompts">
+            <span class="quick-prompts-label">پرسش‌های پیشنهادی:</span>
+            <button type="button" class="quick-chip" data-prompt="مهلت قانونی و مواعد طرح این دعوا در قوانین ایران چقدر است؟">
+              مهلت قانونی و مواعد این دعوا چقدر است؟
+            </button>
+            <button type="button" class="quick-chip" data-prompt="کدام مرجع قضایی یا اداری برای رسیدگی به این مسئله صالح است؟">
+              کدام مرجع برای رسیدگی صالح است؟
+            </button>
+            <button type="button" class="quick-chip" data-prompt="آیا قبل از طرح دعوا ارسال اظهارنامه رسمی لازم است؟">
+              آیا ارسال اظهارنامه رسمی لازم است؟
+            </button>
+          </div>
+
+          <!-- Chat Input Area -->
+          <div class="chat-input-bar">
+            <form class="chat-input-form" id="chat-input-form">
+              <div class="chat-textarea-wrapper">
+                <textarea
+                  id="chat-textarea"
+                  class="chat-textarea"
+                  placeholder="پرسش یا جزئیات مسئله حقوقی خود را بنویسید (Enter برای ارسال، Shift+Enter برای خط جدید)..."
+                  rows="1"
+                  maxlength="2000"
+                  aria-label="پیام شما به دستیار حقوقی"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn-chat-send"
+                id="btn-chat-send"
+                title="ارسال پیام"
+                aria-label="ارسال پیام"
+              >
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+              </button>
+            </form>
+            <div class="chat-input-hint">
+              <span>Enter: ارسال پیام · Shift + Enter: سطر جدید · اطلاعات محرمانه یا شماره کارت وارد نفرمایید</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ======================================================== -->
+    <!-- MODALS -->
+    <!-- ======================================================== -->
+
+    <!-- Modal 1: خلاصه پرونده در چت -->
+    <div class="modal-backdrop" id="modal-case-summary" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modal-case-title">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+            </svg>
+            <h3 class="modal-title" id="modal-case-title">خلاصه پرونده ثبت‌شده</h3>
+          </div>
+          <button type="button" class="modal-close-btn" id="btn-close-modal-summary" aria-label="بستن">
+            ✕
+          </button>
+        </div>
+        <div class="modal-body" id="modal-case-body">
+          <!-- Populated from state -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn-close-modal-summary-action">بستن</button>
+          <button type="button" class="btn btn-primary" id="btn-modal-edit-case">ویرایش مشخصات پرونده</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2: تأیید شروع مجدد گفت‌وگو -->
+    <div class="modal-backdrop" id="modal-reset-confirm" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modal-reset-title">
+      <div class="modal-dialog modal-dialog-sm">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modal-reset-title">شروع گفت‌وگوی جدید</h3>
+          <button type="button" class="modal-close-btn" id="btn-close-modal-reset" aria-label="انصراف">
+            ✕
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-confirm-text">
+            آیا مایلید گفت‌وگوی جدیدی را آغاز نمایید؟ اطلاعات واردشده برای این پرونده بازنشانی خواهد شد.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-reset">انصراف و ادامه همین گفتگو</button>
+          <button type="button" class="btn btn-danger" id="btn-confirm-reset">بله، شروع مجدد</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 3: بانک قوانین و اسناد معتبر RAG -->
+    <div class="modal-backdrop" id="modal-legal-sources" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modal-sources-title">
+      <div class="modal-dialog" style="max-width: 720px;">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg>
+            <h3 class="modal-title" id="modal-sources-title">پایگاه قوانین و مقررات معتبر جمهوری اسلامی ایران</h3>
+          </div>
+          <button type="button" class="modal-close-btn" id="btn-close-modal-sources" aria-label="بستن">
+            ✕
+          </button>
+        </div>
+        <div class="modal-body" id="modal-sources-body">
+          <div style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 14px;">
+            این سامانه اسناد حقوقی زیر را از سامانه‌های رسمی «سامانه ملی قوانین و مقررات» (qavanin.ir) و «روزنامه رسمی» (rrk.ir) دریافت و جهت پاسخگویی مستند ذخیره کرده است:
+          </div>
+          <div id="sources-list-container" style="display: flex; flex-direction: column; gap: 10px;">
+            <!-- Loaded dynamically from /api/sources -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn-close-modal-sources-action">بستن</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script Entry Point -->
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

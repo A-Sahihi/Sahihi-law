@@ -1,0 +1,6 @@
+{
+  "name": "دستیار حقوقی هوشمند ایران",
+  "description": "سامانه راهنمایی حقوقی اولیه و هدایت قانونی بر اساس قوانین جمهوری اسلامی ایران",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
