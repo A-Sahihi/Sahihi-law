@@ -4,7 +4,7 @@
  * تطبیق استنادات با پایگاه داده معتبر و جلوگیری از ارجاعات ساختگی
  */
 
-import { LegalArticle, VerifiedCitation } from '../types/legal.ts';
+import type { LegalArticle, VerifiedCitation } from '../types/legal.ts';
 import { knowledgeBase } from './knowledgeBase.ts';
 import { normalizePersianText } from './retriever.ts';
 

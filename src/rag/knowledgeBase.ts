@@ -4,7 +4,7 @@
  * منابع رسمی: سامانه ملی قوانین و مقررات (qavanin.ir) و روزنامه رسمی (rrk.ir)
  */
 
-import { LegalArticle, IngestDocumentPayload } from '../types/legal.ts';
+import type { LegalArticle, IngestDocumentPayload } from '../types/legal.ts';
 
 export const INITIAL_LEGAL_ARTICLES: LegalArticle[] = [
   // =========================================================================
